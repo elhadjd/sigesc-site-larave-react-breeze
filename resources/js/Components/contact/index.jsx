@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify'
 export default function Contacts() {
   const {formData,handleCHangeInput,handelSubmitForm,buttonSubmitDisable} = contactsServices()
   return (
-    <div className={styles.principal}>
+    <div className={`${styles.principal} mt-20`}>
       <ToastContainer/>
         <div className={styles.main}>
           <div className={styles.titles}>

@@ -1,14 +1,16 @@
 import style from '../../../assets/auth/login.module.scss'
 import { Register } from './Register'
 import { AiOutlineCheckCircle} from 'react-icons/ai'
-import {BsFacebook, BsGithub, BsGoogle} from 'react-icons/bs'
+import {BsGithub, BsGoogle} from 'react-icons/bs'
 import { loginServices } from '../../services/login'
 import { ToastContainer } from 'react-toastify'
 import { Link } from '@inertiajs/react'
+import {  useFormState } from '@/contexts/stateForm'
+import LoadingButtons from '@/ui/loadingButtons'
 
 export const Login = ({local}:{local: string}) => {
-    const {formData,handelSubmitForm,handleCHangeInput,authenticateWithSocial,stateForm,handlerChangeForm} = loginServices(local)
-
+    const {formData,handelSubmitForm,handleCHangeInput,stateForm,handlerChangeForm} = loginServices(local)
+    const {isFormSubmitted} = useFormState()
     return (
     <div className={style.principal}>
         <ToastContainer/>
@@ -64,7 +66,9 @@ export const Login = ({local}:{local: string}) => {
                             <label htmlFor="weekConnect">Permanece connectado por uma semana</label>
                         </div>
                         <div className={style.buttons}>
-                            <button type='submit'>Continuar</button>
+                            <button type='submit'>
+                                {!isFormSubmitted ? 'Logar' : <LoadingButtons />}
+                            </button>
                         </div>
                         <div className={style.newCount}>
                             <span>Não tem uma conta?</span>
@@ -72,12 +76,11 @@ export const Login = ({local}:{local: string}) => {
                         </div>
                     </form>
                 ):(
-                    <Register changeForme={()=>handlerChangeForm(true)}/>
+                    <Register local={local} changeForme={()=>handlerChangeForm(true)}/>
                 )}
                 <div className={style.loginRede}>
-                    <button type='button' onClick={()=>authenticateWithSocial('google')}><BsGoogle/></button>
-                    <button type='button' onClick={()=>authenticateWithSocial('facebook')}><BsFacebook/></button>
-                    <button type='button' onClick={()=>authenticateWithSocial('github')}><BsGithub/></button>
+                    <a href={`/loginWithSocial/google`}><BsGoogle/></a>
+                    <a href={`/loginWithSocial/github`}><BsGithub/></a>
                 </div>
             </div>
         </div>

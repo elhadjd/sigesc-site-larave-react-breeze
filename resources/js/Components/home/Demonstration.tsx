@@ -27,12 +27,11 @@ export const Demonstration = () => {
     state: false,
     content: ''
   })
-//   const changeIcons = ((position:number)=>{
-//     return setIcon(icons[position])
-//   })
+  const changeIcons = ((position:number)=>{
+    return setIcon(icons[position])
+  })
   const demoIcons = (()=>{
     console.log('clicou');
-
   })
 //   useEffect(()=>{
 //     changeIcons(0)
@@ -52,7 +51,7 @@ export const Demonstration = () => {
   })
 
   return (
-    <div className={style.container}>
+    <div className={`${style.container} mt-20`}>
       <TextPreview preview={textPreview} action={(e)=>handlerPreviewText(e)}/>
         <div className={style.header}></div>
         <div className={style.content_left}>
@@ -68,8 +67,8 @@ export const Demonstration = () => {
             </p>
           </div>
           <div className={style.buttons}>
-            <Buttons action={()=>handelClickButton('/contact')} text='Entrar em contacto' icon={iconContact}  type='button' style={style.contact}/>
-            <Buttons action={()=>handelClickButton('/prices')} text='Demo' icon={<AiFillCaretRight/>} type='button' style={style.demo}/>
+            <Buttons action={()=>handelClickButton('/contact')} changeIcons={changeIcons} text='Entrar em contacto' icon={iconContact}  type='button' style={style.contact}/>
+            <Buttons action={()=>handelClickButton('/prices')} text='Demo' changeIcons={(()=>{})} icon={<AiFillCaretRight/>} type='button' style={style.demo}/>
           </div>
         </div>
         <div className={style.content_right}>

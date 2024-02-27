@@ -39,7 +39,7 @@
             justify-content: space-between;
             padding: 10px 0px 10px 0px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.034), 0 6px 20px 0 rgba(0, 0, 0, 0.007);
-            
+
             >span:nth-child(1){
                 height: 70%;
             }
@@ -59,7 +59,7 @@
         }
     }
     >div:nth-child(2){
-        
+
         .hardware{
             display: flex;
             flex-direction: row;
@@ -81,6 +81,15 @@
                     font-weight: 600;
                 }
             }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .module{
+
+        >div{
+            flex: 0 0 130px !important;
         }
     }
 }

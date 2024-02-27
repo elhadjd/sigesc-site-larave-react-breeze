@@ -1,4 +1,4 @@
-import { User } from "firebase/auth";
+import { User } from "@/types";
 import React, { ReactNode, createContext, useContext, useState } from "react";
 
 interface LoggedUserData{
@@ -10,7 +10,7 @@ interface UserLoggedProviderProps{
     children: ReactNode
 }
 
-const loggedUserContext = createContext<LoggedUserData |undefined>()
+const loggedUserContext = createContext<LoggedUserData | undefined>()
 
 export const useLoggedUser = ()=>{
     const context = useContext(loggedUserContext)

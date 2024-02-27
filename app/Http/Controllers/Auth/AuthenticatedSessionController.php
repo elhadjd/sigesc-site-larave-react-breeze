@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,30 +30,72 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
-        $request->authenticate();
+        $checkUser = User::where('email',$request->email)->first();
+        if($checkUser){
+            if($checkUser->socialType != 'sisgesc.net'){
+                return $this->RespondWarn("A sua conta esta registrada com o provedor $checkUser->socialType, por favor clique no icon abaixo para iniciar a sesão");
+            }else{
+                $request->authenticate();
+                $request->session()->regenerate();
+                return $this->RespondSuccess('success');
+            }
+        }
+        return $this->RespondWarn('Usuario não encontado, se ainda não possuiu uma conta clica no botão de baixo para cria uma, ou inicia a sesão pelo provedores abaixo');
+    }
 
-        $request->session()->regenerate();
+    public function authenticateWithSocial(Request $request,$local,$drive){
+        $drives = ['google', 'github', 'facebook'];
+        cookie()->queue('provider',$drive);
+        if(!in_array($drive,$drives)) redirect($request->getLocale()."/auth")->with('Tipo de authenticação não suportada');
+        return Socialite::driver($drive)->redirect();
+    }
+
+    function authenticateWithSocialCallback(Request $request) {
+        if(!$request->cookie('provider')) redirect('dashboard');
+        $provider = $request->cookie('provider');
+        $socialUser = Socialite::driver($provider)->user();
+        $user = User::updateOrCreate([
+            'email'=>$socialUser->email
+        ], [
+            'social_id' => $socialUser->id,
+            'socialType'=>$provider,
+            'name' => $socialUser->name == null ? $socialUser->getNickname() : $socialUser->name,
+            'email' => $socialUser->email,
+            'social_token' => $socialUser->token,
+            'social_refresh_token' => $socialUser->refreshToken,
+        ]);
+
+        Auth::login($user);
+
+        $request->user()->userProfile()
+        ->updateOrCreate([
+            'user_id'=>$request->user()->id
+        ],[
+            'surname' => $user->name,
+            'image' => $socialUser->avatar,
+        ]);
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
-    public function authenticateWithSocial(Request $request){
-        
-    }
+
 
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
+        Auth::logout();
+
+        return Auth::user();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return Inertia::location($request->getLocale().'/');
     }
 }

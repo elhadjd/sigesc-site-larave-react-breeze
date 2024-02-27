@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../assets/progress/index.module.scss'
+import styles from '../../../assets/progress/index.module.scss'
 import {useFormState} from '../../contexts/stateForm'
 export const Progress = ()=> {
   const {isFormSubmitted} = useFormState()

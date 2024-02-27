@@ -34,7 +34,6 @@ export const loginServices = (local: string) => {
         stateForm.register = state
         setStateForm({...stateForm})
     })
-
     const {checkLoggedUser} = routeApi()
     useEffect(()=>{
         (async()=>{
@@ -64,10 +63,9 @@ export const loginServices = (local: string) => {
         event.preventDefault(),
         setStateForm({...stateForm})
         setIsFormSubmitted(true)
-        await Login(formData).then((result) => {
-            if(result.data.user) localStorage.setItem('user',JSON.stringify(result.data.user))
-            toast[result.data.type](result.data.message,{position: 'top-right'})
-            return router.get('/')
+        await Login(local,formData).then((response) => {
+            if(response.data.message) toast[response.data.type](response.data.message,{position: 'top-right'})
+            if(response.data.message && response.data.type == 'success') router.get('/')
         }).catch((err) => {
             console.log(err);
             toast.error(err.message,{position: 'top-right'})
@@ -77,14 +75,6 @@ export const loginServices = (local: string) => {
         });
     })
 
-    const authenticateWithSocial = (async(type: string)=>{
-        await loginWithSocial(local,type)
-        .then((response) => {
-            console.log(response.data);
-        }).catch((err) => {
-            console.log(err);
-        });
-    })
 
 
     // const handlerLoginWithGoogle = async()=>{
@@ -151,7 +141,6 @@ export const loginServices = (local: string) => {
         handelSubmitForm,
         handleCHangeInput,
         handlerChangeForm,
-        authenticateWithSocial
         // handlerLoginWithGoogle,
         // handlerLoginWithFacebook,
         // handlerLoginWithGitHub,

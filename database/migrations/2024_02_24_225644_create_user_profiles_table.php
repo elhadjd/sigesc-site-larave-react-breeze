@@ -16,10 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('phone')->default('999999999');
-            $table->string('surname')->default(null);
+            $table->string('surname')->nullable();
             $table->string('image');
-            $table->string('country')->default(null);
-            $table->string('address')->default(null);
+            $table->string('country')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

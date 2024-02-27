@@ -6,7 +6,7 @@ export const Prices = () => {
     return router.get(route)
   })
   return (
-    <div className={style.principal}>
+    <div className={`${style.principal} mt-20`}>
       <div className={style.description}>
         <h1>Soluções Acessíveis para o Sucesso: Conheça os Preços do Nosso Software de Gestão Integrado comercial.</h1>
         <p>Descubra pacotes personalizados que se adequam ao seu negócio. Nosso software de gestão integrado comercial oferece recursos como PDV avançado, controle financeiro, gestão de compras e inventário. Maximize a eficiência operacional enquanto mantém os custos sob controle. Escolha a solução certa para impulsionar o crescimento da sua empresa. Explore nossos preços competitivos e leve seu negócio ao próximo nível com inovação, segurança e eficiência.</p>

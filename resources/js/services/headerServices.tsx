@@ -22,21 +22,6 @@ export const HeaderServices = (()=>{
       useEffect(()=>{
         (async()=>{
           changeIcons(0)
-          let user = JSON.parse(localStorage.getItem('user'))
-          if (user) {
-            setIsFormSubmitted(true)
-            await axios.post('checkLoggedUser',user).then((response) => {
-            if (!response.data.stateLogin) {
-                return localStorage.removeItem('user')
-            }
-            setUser({...user})
-            }).catch((err) => {
-                toast.error(err.message,{position: 'top-right'})
-                console.log(err);
-            }).finally(()=>{
-              setIsFormSubmitted(false)
-            });
-          }
         })()
       },[])
 
@@ -48,5 +33,6 @@ export const HeaderServices = (()=>{
         setIsFormSubmitted(false)
         return router.get(route)
       })
+
       return {icon,Login,changeIcons,navigates}
 })

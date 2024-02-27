@@ -2,12 +2,14 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useFormState } from '../contexts/stateForm'
+import { routeApi } from '@/axiosConfig'
+import { router } from '@inertiajs/react'
 interface dataType{
   name: string,
   surname: string,
   email: string,
   password: string,
-  password1: string,
+  password_confirmation: string,
   providerId: string,
   accountType: string,
   image: string,
@@ -21,22 +23,23 @@ interface countriesTs{
     list: {code: string,name:string}[],
     store: {code: string,name:string}[],
 }
-export const userRegisterServices = () => {
+export const userRegisterServices = (local:string) => {
   const [stateSubmit,setStateSubmit] = useState<boolean>(false)
   const {setIsFormSubmitted} = useFormState()
+  const {RoutePost} = routeApi()
   const [formData ,setFormData] = useState<dataType>({
     name: '',
     surname: '',
     email: '',
     image: '',
-    accountType: 'SIGESC ACCOUNT',
-    providerId: 'sigesc.net',
+    accountType: '',
+    providerId: 'sisgesc.net',
     country: {
       name: '',
       code: ''
     },
     password: '',
-    password1: ''
+    password_confirmation: ''
   })
   const [stateFormListCountry,setStateFormListCountry] = useState<boolean>(false)
 
@@ -51,17 +54,19 @@ export const userRegisterServices = () => {
     setStateFormListCountry(false)
   })
 
-  const handelSubmitForm = ((event: React.FormEvent<HTMLElement>)=>{
+  const handelSubmitForm = ((event: React.FormEvent<HTMLElement>,image:any)=>{
+    if(image != undefined) formData.image = image
+    setFormData({...formData})
     event.preventDefault()
     if (stateSubmit) return
-    if (formData.password != formData.password1) return toast.warning('As duas senha não estão egual, por favor verifica e tenta novamente !!!')
+    if (formData.password != formData.password_confirmation) return toast.warning('As duas senha não estão egual, por favor verifica e tenta novamente !!!')
     setIsFormSubmitted(true)
-    axios.post('https://sigesc-bacend.onrender.com/register',{...formData})
+    RoutePost(`${local}/registerUser`,{...formData})
     .then((response) => {
       toast.success(response.data.message,{position: 'top-right'})
-      setStateSubmit(true)
+      if(response.data.message && response.data.type == 'success') router.get('/')
     }).catch((err) => {
-      toast.warning(err.response.data.message,{position: 'top-right'})
+    //   toast.warning(err.response.data.message,{position: 'top-right'})
       console.log(err);
     }).finally(()=>{
       setIsFormSubmitted(false)

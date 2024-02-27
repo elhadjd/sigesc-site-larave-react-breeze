@@ -85,7 +85,7 @@ const {
   }, [loaded, paid,product]);
 
   return (
-    <div className={styles.main}>
+    <div className={`${styles.main} mt-20`}>
       <ToastContainer/>
       <div className={styles.principal}>
         <div className={styles.form}>

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\classes\UploadImages;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
@@ -29,24 +29,43 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'accountType'=>'required|string',
+            'surname'=>"required|string|max:100",
+            'providerId'=>"required|string",
+            'country'=>"required",
+            'name' => 'required|string|max:100',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        DB::transaction(function () use ($request){
+            $user = User::create([
+                'socialType'=>$request->providerId,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-        event(new Registered($user));
+            $imageName = "users/images/avatar.png";
 
-        Auth::login($user);
+            if($request->image != ''){
+                $upload = new UploadImages();
+                $imageName = $upload->Upload("users/images/$user->id",$request->image);
+            }
 
-        return redirect(RouteServiceProvider::HOME);
+            $user->userProfile()->create([
+                'surname'=>$request->surname,
+                'image'=>"/".$imageName,
+                'country'=>$request->country['name'],
+            ]);
+
+            event(new Registered($user));
+
+            Auth::login($user);
+        });
+        return $this->RespondSuccess('Conta criada com sucesso',$request->user()->with('userProfile'));
     }
 }

@@ -10,14 +10,35 @@ export const Api = axios.create({
 
 export const routeApi = ()=>{
     const loginWithSocial = async(local:string,type: string)=>{
-        return await Api.post(`${local}/loginWithSocial`,{type: type})
+        return await Api.get(`${local}/loginWithSocial/${type}`)
     }
+
     const checkLoggedUser = ((data:User)=>{
         return Api.post('checkLoggedUser',{...data})
     })
 
-    const Login = async(data:any)=>{
-        return Api.post('authenticate',{...data})
+    const Login = async(local:string,data:any)=>{
+        return Api.post(`${local}/authenticate`,{...data})
     }
-    return {loginWithSocial,checkLoggedUser,Login}
+
+    const RoutePost = (async(route:string,data:any)=>{
+        return await Api.post(route,{...data})
+    })
+
+    const RouteGet = (async(route:string)=>{
+        return await Api.get(route)
+    })
+
+    const RouteDelete = (async(route:string)=>{
+        return await Api.get(route)
+    })
+
+    return {
+        loginWithSocial,
+        checkLoggedUser,
+        Login,
+        RoutePost,
+        RouteGet,
+        RouteDelete
+    }
 }

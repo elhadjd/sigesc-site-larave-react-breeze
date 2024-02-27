@@ -19,21 +19,21 @@ export default function FooterComponent() {
           <span>Links</span>
           <div>
             <Link href={'/contact'}><AiOutlineContacts/> Contacto</Link>
-            <a href={'https://glamoure.net'}><BiStore/> Loja</a>
+            <a href={'https://glamoure.net'} target="_blank"><BiStore/> Loja</a>
             <Link href={'/prices'}><BiTag/>Lista de preço</Link>
             <Link href={'/Payments'}><BsCash/>Pagamentos</Link>
             <Link href={'/auth'}><BiLogIn/>Entrar</Link>
-            <a href='https://geral.sisgesc.net/'><FaUsers/>Já e nosso cliente ?</a>
-            <a href='https://sisgesc.net/gettingStarted'><BsBuilding/>Cree a sua empresa apenas com alguns cliques</a>
+            <a href='https://geral.sisgesc.net/' target="_blank"><FaUsers/>Já e nosso cliente ?</a>
+            <a href='https://sisgesc.net/gettingStarted' target="_blank"><BsBuilding/>Cree a sua empresa apenas com alguns cliques</a>
           </div>
         </div>
         <div className={styles.social}>
           <span>Rede social</span>
           <div>
-            <a href='https://www.facebook.com/Sisgesc'><BsFacebook/>Facebook</a>
-            <a href='https://www.tiktok.com/@sigesc'><BiLogoTiktok/>TikTok</a>
-            <a href='https://www.instagram.com/leonardo_vandunen/'><AiFillInstagram/>Instagram</a>
-            <a href="https://www.youtube.com/@sigescTech" ><AiFillYoutube/> Youtube</a>
+            <a href='https://www.facebook.com/Sisgesc' target="_blank"><BsFacebook/>Facebook</a>
+            <a href='https://www.tiktok.com/@sigesc' target="_blank"><BiLogoTiktok/>TikTok</a>
+            <a href='https://www.instagram.com/leonardo_vandunen/' target="_blank"><AiFillInstagram/>Instagram</a>
+            <a href="https://www.youtube.com/@sigescTech" target="_blank"><AiFillYoutube/> Youtube</a>
           </div>
         </div>
       </div>
