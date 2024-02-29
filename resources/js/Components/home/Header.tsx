@@ -22,8 +22,6 @@ export const HeaderComponent = ({userLog}:{userLog: {user:User}}) => {
   useEffect(()=>{
 
     (()=>{
-        console.log(userLog);
-
         if (userLog != null) {
             setUser({...userLog.user})
         }

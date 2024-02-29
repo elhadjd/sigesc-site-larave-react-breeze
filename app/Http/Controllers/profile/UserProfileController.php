@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\profile;
 
 use App\classes\UploadImages;
+use App\Events\NewUserNotification;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserProfile;
@@ -16,8 +17,9 @@ class UserProfileController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        // broadcast(new NewUserNotification($request->user()));
         return Inertia::render('profile/index',[
             'local'=>request()->getLocale()
         ]);
@@ -42,9 +44,9 @@ class UserProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserProfile $userProfile)
+    public function show(User $user)
     {
-        //
+        return broadcast(new NewUserNotification($user->user()));
     }
 
     /**
@@ -62,22 +64,22 @@ class UserProfileController extends Controller
         ]);
 
 
-        $imageName = str_replace('/u','',$request->user_profile['image']);
+        $imageName = null;
         if($user->email != $request->email) return $this->RespondError('Atenção não podes modificar o email neste formulário');
         if($request->user_profile['image'] !== $user->userProfile()->first()->image){
             $upload = new UploadImages();
             $imageName = $upload->Upload("users/images/$user->id",$request->user_profile['image']);
-
         }
 
         $user->update($request->all());
 
         $user->userProfile()->update([
-            'image'=>"/$imageName",
+            'image'=>$imageName != null ? "/$imageName" : $request->user_profile['image'],
             'address'=>$request->user_profile['address'],
             'phone'=>$request->user_profile['phone'],
             'country'=>$request->user_profile['country'],
         ]);
+
         return $this->RespondSuccess('Success',$user->fresh());
     }
 

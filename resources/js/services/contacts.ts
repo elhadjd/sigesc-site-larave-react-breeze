@@ -9,8 +9,10 @@ interface dataType {
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useFormState } from "../contexts/stateForm";
+import { routeApi } from "@/axiosConfig";
 export const contactsServices = () => {
   const {setIsFormSubmitted} = useFormState()
+  const { RoutePost} = routeApi()
   const [buttonSubmitDisable,setButtonSubmitDisable] = useState<boolean>(false)
   const [formData, setFormData] = useState<dataType>({
     surname: "",
@@ -30,11 +32,11 @@ export const contactsServices = () => {
 
   const handelSubmitForm = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-    if(buttonSubmitDisable) return toast.info('Formulario enviado',{position: 'top-right'})
+    // if(buttonSubmitDisable) return toast.info('Formulario enviado',{position: 'top-right'})
     setIsFormSubmitted(true)
-    axios.post("https://sigesc-bacend.onrender.com/contact", { ...formData })
+    RoutePost("en/contact/sendMessage", { ...formData })
       .then((response) => {
-        toast[response.data.type](response.data.message,{position: "top-right"})
+        // toast[response.data.type](response.data.message,{position: "top-right"})
         if (response.status === 200) {
           setButtonSubmitDisable(true)
         }

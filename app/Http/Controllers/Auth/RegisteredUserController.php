@@ -45,6 +45,7 @@ class RegisteredUserController extends Controller
             $user = User::create([
                 'socialType'=>$request->providerId,
                 'name' => $request->name,
+                'accountType'=>$request->accountType,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
@@ -66,6 +67,7 @@ class RegisteredUserController extends Controller
 
             Auth::login($user);
         });
+
         return $this->RespondSuccess('Conta criada com sucesso',$request->user()->with('userProfile'));
     }
 }

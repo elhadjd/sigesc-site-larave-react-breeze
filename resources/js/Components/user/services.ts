@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 export const UserServices = ((local:string)=>{
     const {setIsFormSubmitted} = useFormState()
     const {user,setUser} = useLoggedUser()
-    const {RoutePost} = routeApi()
+    const {RoutePost,RouteGet} = routeApi()
     const handleInputChange = (e:any) => {
         const { name, value } = e.target;
         if(name == 'country'|| name == 'phone'||name == 'surname'|| name == 'address'){
@@ -34,7 +34,17 @@ export const UserServices = ((local:string)=>{
         });
     };
 
+    const verifyUserEmail = (()=>{
+        RouteGet(`${local}/verifyUserEmail`)
+        .then((response:{data: {message: string,type:string}}) => {
+            console.log(response.data);
+        }).catch((err) => {
+
+        });
+    })
+
     return {
+        verifyUserEmail,
         handleSubmit,
         handleInputChange
     }

@@ -2,10 +2,13 @@ import { User } from '@/types'
 import { useLoggedUser } from '@/contexts/loggedUser'
 import { useEffect } from 'react'
 import { UserServices } from './services'
+import { BiCheckboxSquare } from 'react-icons/bi'
+import { BsCheck2All } from 'react-icons/bs'
 
 
-export default function ProfileComponent({props,openForEdit}:{props:{auth: {user:User}},openForEdit:VoidFunction}) {
+export default function ProfileComponent({props,openForEdit}:{props:{auth: {user:User},local:string},openForEdit:VoidFunction}) {
     const {user,setUser} = useLoggedUser()
+    const {verifyUserEmail} = UserServices(props.local)
     useEffect(()=>{
         setUser({...props.auth.user})
     },[])
@@ -18,7 +21,9 @@ export default function ProfileComponent({props,openForEdit}:{props:{auth: {user
                 <div className="flex flex-col gap-2 text-center md:text-left">
                     <h1 className="text-2xl font-bold">{props.auth.user.user_profile.surname}</h1>
                     <div className='w-full text-start gap-x-6 gap-y-2 grid grid-cols-1 md:grid-cols-2 grid-rows-auto'>
-                        <p className="text-sm truncate text-gray-600">Email: {props.auth.user.email}</p>
+                        <p className="text-sm flex flex-col space-y-2 truncate text-gray-600">Email: {props.auth.user.email}
+                        {props.auth.user.email_verified_at != null ?<BsCheck2All className='text-green-500 text-2xl'/>:
+                        <span className='text-sm text-gray-400 font-base cursor-pointer' onClick={verifyUserEmail}>Verificar</span>}</p>
                         <p className="text-sm truncate text-gray-600">Telefone: {props.auth.user.user_profile.phone}</p>
                         <p className="text-sm truncate text-gray-600">Morada: {props.auth.user.user_profile.country}</p>
                         <p className="text-sm truncate text-gray-600">Loja: {props.auth.user.socialType ? 'Possui uma loja' : 'Não possui loja'}</p>

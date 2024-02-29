@@ -5,11 +5,14 @@ import style from '@/../css/index.module.scss'
 import { HeaderComponent } from '../Components/home/Header';
 import { Demonstration } from '@/Components/home/Demonstration';
 import FooterComponent from '@/Components/home/Footer';
-import { Progress } from '@/Components/public/progress';
 import { User } from '@/types';
 
 export default function dashboard(props:{local: string,auth:{user:User}}) {
 
+    window.Echo.private(`User.${props.auth?.user?.id}`)
+    .listen('.user.created', (e:any) => {
+        console.log(e);
+    });
   return (
     <UserLoggedProvider>
       <div className={`${style.App} relative`}>

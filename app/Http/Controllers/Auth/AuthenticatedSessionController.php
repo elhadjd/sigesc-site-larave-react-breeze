@@ -21,7 +21,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Login', [
+        return Inertia::render('Auth/index', [
+            "local"=>request()->getLocale(),
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
         ]);
@@ -61,6 +62,7 @@ class AuthenticatedSessionController extends Controller
         ], [
             'social_id' => $socialUser->id,
             'socialType'=>$provider,
+            'accountType' => 'client',
             'name' => $socialUser->name == null ? $socialUser->getNickname() : $socialUser->name,
             'email' => $socialUser->email,
             'social_token' => $socialUser->token,
@@ -68,6 +70,9 @@ class AuthenticatedSessionController extends Controller
         ]);
 
         Auth::login($user);
+        if (!$request->user()->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+        }
 
         $request->user()->userProfile()
         ->updateOrCreate([
