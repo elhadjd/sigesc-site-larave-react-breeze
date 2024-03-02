@@ -5,6 +5,8 @@ interface dataType {
   phone: string;
   email: string;
   message: string;
+  newsletter:boolean,
+  account:boolean
 }
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -20,23 +22,29 @@ export const contactsServices = () => {
     phone: "",
     email: "",
     message: "",
+    newsletter:false,
+    account: false
   });
 
   const handleCHangeInput = (event: {
-    target: { id: string; value: string };
+    target: { id: string; value: string,checked?:boolean };
   }) => {
-    formData[event.target.id] = event.target.value;
+    if(event.target.id == 'newsletter'){
+        formData[event.target.id] = event.target.checked;
+    }else{
+        formData[event.target.id] = event.target.value;
+    }
     setFormData({ ...formData });
     setButtonSubmitDisable(false)
   };
 
   const handelSubmitForm = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-    // if(buttonSubmitDisable) return toast.info('Formulario enviado',{position: 'top-right'})
+    if(buttonSubmitDisable) return toast.info('Formulario enviado',{position: 'top-right'})
     setIsFormSubmitted(true)
     RoutePost("en/contact/sendMessage", { ...formData })
       .then((response) => {
-        // toast[response.data.type](response.data.message,{position: "top-right"})
+        toast.success(response.data.message,{position: "top-right"})
         if (response.status === 200) {
           setButtonSubmitDisable(true)
         }

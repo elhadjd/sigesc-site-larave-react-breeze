@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Events\contactFormEvent;
 use App\Events\emailVerifiedEvent;
 use App\Events\UserEvent;
 use App\Events\welcomeUserEvent;
+use App\Listeners\contactFormListener;
 use App\Listeners\UsersListener;
 use App\Listeners\welcomeUserListener;
 use Illuminate\Auth\Events\Registered;
@@ -32,6 +34,10 @@ class EventServiceProvider extends ServiceProvider
 
         emailVerifiedEvent::class =>[
 
+        ],
+
+        contactFormEvent::class => [
+            contactFormListener::class,
         ],
     ];
 

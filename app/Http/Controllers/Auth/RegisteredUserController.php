@@ -53,7 +53,7 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            $imageName = "users/images/avatar.png";
+            $imageName = "/users/images/avatar.png";
 
             if($request->image != ''){
                 $upload = new UploadImages();
@@ -76,8 +76,6 @@ class RegisteredUserController extends Controller
             Mail::to($user->email)->send(new EmailVerify($data));
             Auth::login($user);
         });
-
-
 
         return $this->RespondSuccess('Conta criada com sucesso',$request->user()->with('userProfile'));
     }

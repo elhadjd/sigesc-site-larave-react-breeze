@@ -5,9 +5,10 @@ import styles from '../../../assets/contacts/index.module.scss'
 import { contactsServices } from '../../services/contacts'
 import WhatsApp from '../public/whatsApp'
 import { ToastContainer } from 'react-toastify'
+import LoadingButtons from '@/ui/loadingButtons'
 
 export default function Contacts() {
-  const {formData,handleCHangeInput,handelSubmitForm,buttonSubmitDisable} = contactsServices()
+  const {formData,handleCHangeInput,handelSubmitForm,setIsFormSubmitted,buttonSubmitDisable} = contactsServices()
   return (
     <div className={`${styles.principal} mt-20`}>
       <ToastContainer/>
@@ -48,25 +49,37 @@ export default function Contacts() {
             <form onSubmit={handelSubmitForm}>
               <span>
                 <label htmlFor="surname">Apelido</label>
-                <input type="text" value={formData.surname} onChange={(e)=>handleCHangeInput(e)} required id='surname' placeholder='Digite seu apelido'/>
+                <input type="text" className='w-full' value={formData.surname} onChange={(e)=>handleCHangeInput(e)} required id='surname' placeholder='Digite seu apelido'/>
               </span>
               <span>
                 <label htmlFor="name">Nome</label>
-                <input type="text" value={formData.name} onChange={(e)=>handleCHangeInput(e)} id='name' placeholder='Digite seu nome' />
+                <input type="text" className='w-full' value={formData.name} onChange={(e)=>handleCHangeInput(e)} id='name' placeholder='Digite seu nome' />
               </span>
               <span>
                 <label htmlFor="phone">Telefone</label>
-                <input type="tel" value={formData.phone} onChange={(e)=>handleCHangeInput(e)} required id='phone' placeholder='Digite seu numero de telefone'/>
+                <input type="tel" className='w-full' value={formData.phone} onChange={(e)=>handleCHangeInput(e)} required id='phone' placeholder='Digite seu numero de telefone'/>
               </span>
               <span>
                 <label htmlFor="email">E-mail</label>
-                <input type="email" value={formData.email} onChange={(e)=>handleCHangeInput(e)} required id='email' placeholder='Digite seu email'/>
+                <input type="email" className='w-full' value={formData.email} onChange={(e)=>handleCHangeInput(e)} required id='email' placeholder='Digite seu email'/>
               </span>
               <span>
-                <textarea name="message" value={formData.message} onChange={(e)=>handleCHangeInput(e)} required id="message"></textarea>
+                <textarea name="message" className='w-full' value={formData.message} onChange={(e)=>handleCHangeInput(e)} required id="message"></textarea>
+              </span>
+              <span className='flex w-full flex-row space-x-2'>
+                <label className='flex-auto truncate' htmlFor="account">Criar conta</label>
+                <input className='outline-none' type="checkbox" onChange={(e)=>handleCHangeInput(e)} name='account' id='account'/>
+              </span>
+              <span className='flex w-full flex-row space-x-2'>
+                <label className='flex-auto truncate' htmlFor="newsletter">Recebes novidades</label>
+                <input className='outline-none' type="checkbox" onChange={(e)=>handleCHangeInput(e)} name='newsletter' id='newsletter'/>
               </span>
               <span>
-                <button type='submit'>Enviar</button>
+                <button type='submit'>
+                    {
+                        !setIsFormSubmitted ? <LoadingButtons/> :'Enviar'
+                    }
+                </button>
               </span>
             </form>
           </div>

@@ -9,17 +9,19 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactFormMail extends Mailable
+class autoPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public $contact;
-    public function __construct($contact)
+
+    public $data;
+
+    public function __construct($data)
     {
-        $this->contact = $contact;
+        $this->data = $data;
     }
 
     /**
@@ -28,8 +30,7 @@ class ContactFormMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Formulário de contacto do site sigesc',
-            from: $this->contact['email'],
+            subject: 'Auto Password',
         );
     }
 
@@ -39,8 +40,8 @@ class ContactFormMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.newContact',
-            with: $this->contact,
+            view: 'emails.autoPassword',
+            with: $this->data
         );
     }
 

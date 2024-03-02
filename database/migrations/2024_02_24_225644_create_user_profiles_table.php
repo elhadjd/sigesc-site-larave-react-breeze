@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('phone')->default('999999999');
             $table->string('surname')->nullable();
-            $table->string('image');
+            $table->string('image')->default('users/images/avatar.png');
             $table->string('country')->nullable();
             $table->string('address')->nullable();
             $table->timestamps();
