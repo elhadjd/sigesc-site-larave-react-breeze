@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\classes\UploadImages;
+use App\Events\welcomeUserEvent;
 use App\Http\Controllers\Controller;
+use App\Mail\EmailVerify;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -65,8 +68,16 @@ class RegisteredUserController extends Controller
 
             event(new Registered($user));
 
+            $data = [
+                'userName'=>$user->name,
+                'id'=>$user->id,
+            ];
+
+            Mail::to($user->email)->send(new EmailVerify($data));
             Auth::login($user);
         });
+
+
 
         return $this->RespondSuccess('Conta criada com sucesso',$request->user()->with('userProfile'));
     }

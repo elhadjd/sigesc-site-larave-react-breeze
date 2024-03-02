@@ -35,7 +35,7 @@ export const UserServices = ((local:string)=>{
     };
 
     const verifyUserEmail = (()=>{
-        RouteGet(`${local}/verifyUserEmail`)
+        RouteGet(`${local}/notify-user-to-verify-email/${user.id}`)
         .then((response:{data: {message: string,type:string}}) => {
             console.log(response.data);
         }).catch((err) => {

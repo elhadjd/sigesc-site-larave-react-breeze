@@ -6,6 +6,10 @@ use App\Http\Controllers\Auth\indexController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Policies\faqController;
+use App\Http\Controllers\Policies\helpController;
+use App\Http\Controllers\Policies\privacyController;
+use App\Http\Controllers\Policies\termsController;
 use App\Http\Controllers\public\contactController;
 use App\Http\Controllers\public\paymentsController;
 use App\Http\Controllers\public\pricesController;
@@ -42,18 +46,20 @@ Route::middleware('local')->group(function(){
             Route::get('authenticate/logout','destroy');
         });
 
-        Route::middleware('auth')->group(function(){
+        Route::get('/verificar-email/{id}',[VerifyEmailController::class,'verify']);
 
+        Route::get('notify-user-to-verify-email/{id}',[VerifyEmailController::class,'notifyUserToVerifyEmail']);
+
+        Route::middleware('auth')->group(function(){
             Route::controller(UserProfileController::class)->group(function(){
                 Route::post('editUserInfo/{user}','edit');
                 Route::get('profile','index');
             });
-            Route::get('/verifyUserEmail',[VerifyEmailController::class,'__invoke']);
+            Route::get('/verificar-email',[VerifyEmailController::class,'emailVerifyPage']);
         });
 
         Route::controller(RegisteredUserController::class)->group(function(){
             Route::post('/registerUser','store');
-
         });
 
         Route::controller(contactController::class)->group(function(){
@@ -67,6 +73,22 @@ Route::middleware('local')->group(function(){
 
         Route::controller(paymentsController::class)->group(function(){
             Route::get('/payments/{fiscalIdentification?}/{email?}','index');
+        });
+
+        Route::controller(privacyController::class)->group(function(){
+            Route::get('/privacy-policy','index');
+        });
+
+        Route::controller(termsController::class)->group(function(){
+            Route::get('terms-of-service','index');
+        });
+
+        Route::controller(faqController::class)->group(function(){
+            Route::get('faq','index');
+        });
+
+        Route::controller(helpController::class)->group(function(){
+            Route::get('help-center','index');
         });
     });
 

@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
         {{-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: ; script-src 'self' ; object-src 'none' "> --}}
         <meta name="description" content="Descubra a excelência operacional em nosso software de gestão integrado. Do PDV avançado ao controle financeiro e gestão de compras, nosso sistema oferece inovação, segurança e eficiência para impulsionar o sucesso do seu negócio.">
         <link rel="preconnect" href="https://fonts.googleapis.com">

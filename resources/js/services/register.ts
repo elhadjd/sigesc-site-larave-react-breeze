@@ -64,7 +64,7 @@ export const userRegisterServices = (local:string) => {
     RoutePost(`${local}/registerUser`,{...formData})
     .then((response) => {
       toast.success(response.data.message,{position: 'top-right'})
-      if(response.data.message && response.data.type == 'success') router.get('/')
+      if(response.data.message && response.data.type == 'success') router.get('/verificar-email')
     }).catch((err) => {
     //   toast.warning(err.response.data.message,{position: 'top-right'})
       console.log(err);

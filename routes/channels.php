@@ -17,4 +17,11 @@ Broadcast::channel('User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
+Broadcast::channel('welcomeUser.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
+});
+
+Broadcast::channel('user.email.verified.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
+});
 

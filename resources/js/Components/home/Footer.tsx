@@ -7,37 +7,51 @@ import { FaUsers } from 'react-icons/fa'
 import { Link } from '@inertiajs/react'
 export default function FooterComponent() {
   return (
-    <div className={styles.footer}>
-      <div>
-        <h3>SIGESC TECH</h3>
-      </div>
-      <div>
-        <h2>Copyright © 2024 SIGESC. Todos os direitos reservados.</h2>
-      </div>
-      <div className={styles.footer_data}>
-        <div className={styles.links}>
-          <span>Links</span>
-          <div>
-            <Link href={'/contact'}><AiOutlineContacts/> Contacto</Link>
-            <a href={'https://glamoure.net'} target="_blank"><BiStore/> Loja</a>
-            <Link href={'/prices'}><BiTag/>Lista de preço</Link>
-            <Link href={'/Payments'}><BsCash/>Pagamentos</Link>
-            <Link href={'/auth'}><BiLogIn/>Entrar</Link>
-            <a href='https://geral.sisgesc.net/' target="_blank"><FaUsers/>Já e nosso cliente ?</a>
-            <a href='https://sisgesc.net/gettingStarted' target="_blank"><BsBuilding/>Cree a sua empresa apenas com alguns cliques</a>
-          </div>
+    <footer className={styles.footer}>
+        <div>
+            <h3>SIGESC TECH</h3>
+            <p className='text-white'>Transformando a gestão comercial com tecnologia e inovação.</p>
         </div>
-        <div className={styles.social}>
-          <span>Rede social</span>
-          <div>
-            <a href='https://www.facebook.com/Sisgesc' target="_blank"><BsFacebook/>Facebook</a>
-            <a href='https://www.tiktok.com/@sigesc' target="_blank"><BiLogoTiktok/>TikTok</a>
-            <a href='https://www.instagram.com/leonardo_vandunen/' target="_blank"><AiFillInstagram/>Instagram</a>
-            <a href="https://www.youtube.com/@sigescTech" target="_blank"><AiFillYoutube/> Youtube</a>
-          </div>
+
+        <nav className={styles.footer_data}>
+            <div className={styles.links}>
+                <h4 className='text-2xl'>Links Rápidos</h4>
+                <ul className='flex flex-col space-y-1'>
+                    <li><Link href="/contact"><a className='flex items-center gap-2'><AiOutlineContacts/> Contato</a></Link></li>
+                    <li><a href="https://glamoure.net" target="_blank"className='flex items-center gap-2' rel="noopener noreferrer"><BiStore/> Loja</a></li>
+                    <li><Link href="/prices"><a className='flex items-center gap-2'><BiTag/> Lista de Preço</a></Link></li>
+                    <li><Link href="/payments"><a className='flex items-center gap-2'><BsCash/> Pagamentos</a></Link></li>
+                    <li><Link href="/auth"><a className='flex items-center gap-2'><BiLogIn/> Entrar</a></Link></li>
+                    <li><a href="https://geral.sisgesc.net/" className='flex items-center gap-2' target="_blank" rel="noopener noreferrer"><FaUsers/> Já é nosso cliente?</a></li>
+                    <li><a href="https://sisgesc.net/gettingStarted" className='flex items-center gap-2' target="_blank" rel="noopener noreferrer"><BsBuilding/> Crie sua empresa em alguns cliques</a></li>
+                </ul>
+            </div>
+
+            <div className={styles.social}>
+                <h4 className='text-2xl'>Redes Sociais</h4>
+                <ul className='flex flex-col space-y-1'>
+                    <li><a href="https://www.facebook.com/Sisgesc" target="_blank" className='flex items-center gap-2' rel="noopener noreferrer"><BsFacebook/> Facebook</a></li>
+                    <li><a href="https://www.tiktok.com/@sigesc" target="_blank" className='flex items-center gap-2' rel="noopener noreferrer"><BiLogoTiktok/> TikTok</a></li>
+                    <li><a href="https://www.instagram.com/leonardo_vandunen/" className='flex items-center gap-2' target="_blank" rel="noopener noreferrer"><AiFillInstagram/> Instagram</a></li>
+                    <li><a href="https://www.youtube.com/@sigescTech" target="_blank" className='flex items-center gap-2' rel="noopener noreferrer"><AiFillYoutube/> Youtube</a></li>
+                </ul>
+            </div>
+
+            <div className="flex flex-col space-y-2">
+                <h4 className='text-2xl'>Recursos</h4>
+                <ul className='flex flex-col space-y-1'>
+                    <li><Link href="/privacy-policy"><a className='flex items-center gap-2'>Política de Privacidade</a></Link></li>
+                    <li><Link href="/terms-of-service"><a className='flex items-center gap-2'>Termos de Serviço</a></Link></li>
+                    <li><Link href="/faq"><a className='flex items-center gap-2'>FAQ</a></Link></li>
+                    <li><Link href="/help-center"><a className='flex items-center gap-2'>Centro de Ajuda</a></Link></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div>
+            <p className='text-white'>Copyright © 2024 SIGESC. Todos os direitos reservados.</p>
         </div>
-      </div>
-    </div>
+    </footer>
   )
 }
 

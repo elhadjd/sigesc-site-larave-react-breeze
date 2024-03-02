@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\welcomeUserEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Mail\welcomeUser;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
@@ -70,6 +72,7 @@ class AuthenticatedSessionController extends Controller
         ]);
 
         Auth::login($user);
+
         if (!$request->user()->hasVerifiedEmail()) {
             $user->markEmailAsVerified();
         }
@@ -81,6 +84,8 @@ class AuthenticatedSessionController extends Controller
             'surname' => $user->name,
             'image' => $socialUser->avatar,
         ]);
+
+        event(new welcomeUserEvent($user));
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

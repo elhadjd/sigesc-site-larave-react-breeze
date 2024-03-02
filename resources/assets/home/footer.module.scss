@@ -26,6 +26,7 @@
         .links{
             display: flex;
             flex-direction: column;
+            gap: 10px;
             >div{
                 display: flex;
                 flex-direction: column;
@@ -53,7 +54,7 @@
             }
             .social{
                 width: 100%;
-                span{
+                ul{
                     width: 100% !important;
                     text-align: center;
                 }
@@ -62,6 +63,7 @@
         .social{
             display: flex;
             flex-direction: column;
+            gap: 10px;
             >div{
                 >a{
                     margin-top: 10px;
