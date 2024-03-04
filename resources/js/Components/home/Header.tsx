@@ -4,37 +4,36 @@ import {BiHelpCircle} from 'react-icons/bi'
 import {GiPriceTag} from 'react-icons/gi'
 import {PiContactlessPaymentBold} from 'react-icons/pi'
 import {AiFillShopping, AiOutlineMenu} from 'react-icons/ai'
-import { ToastContainer } from 'react-toastify'
 import { useLoggedUser } from '../../contexts/loggedUser'
 import { Link } from '@inertiajs/react'
 import { User } from '@/types'
 import { useEffect } from 'react'
 
 
-export const HeaderComponent = ({userLog}:{userLog: {user:User}}) => {
-  const {Login,icon,changeIcons,navigates} = HeaderServices()
+export const HeaderComponent = (props:{auth: {user:User},local: string}) => {
+  const {Login,icon,changeIcons,navigates} = HeaderServices(props)
   const handlerChowMenu = (()=>{
     const button:any = document.getElementsByClassName('button')
     button[0]?.blur()
   })
-  const {user,setUser} = useLoggedUser()
+  const {user,setUser,setLocal} = useLoggedUser()
 
   useEffect(()=>{
 
     (()=>{
-        if (userLog != null) {
-            setUser({...userLog.user})
+        setLocal(props.local)
+        if (props != null) {
+            setUser({...props.auth?.user})
         }
     })()
 
-  },[userLog])
+  },[props])
 
   return (
     <div id='Header' className={`${style.container} fixed bg-white top-0`}>
       <div>
-        <ToastContainer/>
         <span>
-          <Link href={'/'}>
+          <Link href={`/${props.local}`}>
             <div className="flex justify-center space-y-10 md:w-48 flex-col relative">
                 <h1 className="static text-6xl font-bold ">
                     <span>S</span>
@@ -60,13 +59,13 @@ export const HeaderComponent = ({userLog}:{userLog: {user:User}}) => {
                 user?.id?(
                   <div className={style.profile}>
 
-                    <span onClick={()=>navigates('profile')}>
+                    <span onClick={()=>navigates('/profile')}>
                         <h5 className='truncate'>{user.name != null ? user.name: user?.user_profile.surname}</h5>
                         <img src={`${user.user_profile.image}`} alt={user.user_profile.image} />
                     </span>
 
                     <div className="w-8">
-                      <span onClick={()=>navigates('authenticate/logout')}>Sair</span>
+                      <span onClick={()=>navigates('/authenticate/logout')}>Sair</span>
                     </div>
                   </div>
                 ):(

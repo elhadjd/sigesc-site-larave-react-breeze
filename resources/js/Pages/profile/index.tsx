@@ -14,7 +14,7 @@ export default function ProfilePage(props:{auth:{user: User},local:string}) {
   return (
     <UserLoggedProvider>
         <FormStateProvider>
-            <HeaderComponent userLog={props.auth}/>
+            <HeaderComponent  auth={props.auth} local={props.local}/>
             {
                 !stateForEdit ? <ProfileComponent openForEdit={()=>setStateFormEdit(!stateForEdit)} props={props}/>
                 :<EditProfile Props={props}  closeForEdit={()=>setStateFormEdit(!stateForEdit)}/>

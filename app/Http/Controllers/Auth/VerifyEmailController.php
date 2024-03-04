@@ -19,7 +19,7 @@ class VerifyEmailController extends Controller
     /**
      * Mark the authenticated user's email address as verified.
      */
-    public function verify(Request $request)
+    public function __invoke(Request $request)
     {
         $user = User::find($request->route('id'));
 

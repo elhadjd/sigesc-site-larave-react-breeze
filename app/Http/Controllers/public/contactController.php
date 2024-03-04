@@ -23,10 +23,12 @@ use Inertia\Inertia;
 class contactController extends Controller
 {
     function index() {
-        return Inertia::render('contact/index');
+        return Inertia::render('contact/index',[
+            'local'=>request()->getLocale()
+        ]);
     }
 
-    function senMessage(Request $request) {
+    function senMessage(Request $request,costumerContact $costumerContact) {
         $request->validate([
             'name'=>"required|string",
             'surname'=>'required|string',
@@ -36,7 +38,7 @@ class contactController extends Controller
             'newsletter'=>'required|boolean',
         ]);
 
-        DB::transaction(function() use ($request) {
+        DB::transaction(function() use ($request,$costumerContact) {
             $data = [
                 'name'=>$request->name,
                 'surname'=>$request->surname,
@@ -54,48 +56,51 @@ class contactController extends Controller
                 $newsletter->create($request->email,$request->name,$request->surname);
             }
 
-            costumerContact::create($request->all());
+            $costumerContact->create($request->all());
 
             event(new contactFormEvent($data));
         });
 
-        return $this->RespondSuccess('E-mail enviado com sucesso!');
+        return redirect()->back()->with('message','E-mail enviado com sucesso!');
     }
 
     function newUser($data) {
-        DB::transaction(function () use ($data){
-            $password = Str::random(10);
-            $user = User::create([
-                'socialType'=>"sisgesc.net",
-                'name' => $data->name,
-                'accountType'=>'client',
-                'email' => $data->email,
-                'password' => Hash::make($password),
-            ]);
+        if(!User::where('email',$data->email)->first()){
+             DB::transaction(function () use ($data){
+                $password = Str::random(10);
+                $user = User::create([
+                    'socialType'=>"sisgesc.net",
+                    'name' => $data->name,
+                    'accountType'=>'client',
+                    'email' => $data->email,
+                    'password' => Hash::make($password),
+                ]);
 
-            $user->userProfile()->create([
-                'surname'=>$data->surname,
-                'country'=>'United State',
-            ]);
+                $user->userProfile()->create([
+                    'surname'=>$data->surname,
+                    'country'=>'United State',
+                ]);
 
-            $autoPasswordData = [
-                'name'=>$user->name,
-                'email'=>$user->email,
-                'password'=>$password
-            ];
+                $autoPasswordData = [
+                    'name'=>$user->name,
+                    'email'=>$user->email,
+                    'password'=>$password
+                ];
 
-            Mail::to($user->email)->send(new autoPassword($autoPasswordData));
+                Mail::to($user->email)->send(new autoPassword($autoPasswordData));
 
-            event(new Registered($user));
+                event(new Registered($user));
 
-            $data = [
-                'userName'=>$user->name,
-                'id'=>$user->id,
-            ];
+                $data = [
+                    'userName'=>$user->name,
+                    'id'=>$user->id,
+                ];
 
-            Mail::to($user->email)->send(new EmailVerify($data));
+                Mail::to($user->email)->send(new EmailVerify($data));
 
-            Auth::login($user);
-        });
+                Auth::login($user);
+            });
+        }
+
     }
 }

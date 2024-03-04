@@ -14,6 +14,8 @@ use App\Http\Controllers\public\contactController;
 use App\Http\Controllers\public\paymentsController;
 use App\Http\Controllers\public\pricesController;
 use App\Http\Controllers\profile\UserProfileController;
+use App\Http\Controllers\public\CompanyController;
+use App\Http\Controllers\public\modules;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
@@ -34,8 +36,9 @@ use Inertia\Inertia;
 Route::get('en/auth/callback',[AuthenticatedSessionController::class,'authenticateWithSocialCallback']);
 
 Route::middleware('local')->group(function(){
+require __DIR__.'/auth.php';
 
-    Route::prefix('{local}')->group(function(){
+    Route::prefix('{local?}')->group(function(){
 
         Route::get('/', [DashboardController::class,'index']);
 
@@ -46,7 +49,11 @@ Route::middleware('local')->group(function(){
             Route::get('authenticate/logout','destroy');
         });
 
-        Route::get('/verificar-email/{id}',[VerifyEmailController::class,'verify']);
+        Route::controller(modules::class)->group(function(){
+            Route::get('modules/{module}','index')->name('modules');
+        });
+
+        Route::get('/verificar-email/{id}',[VerifyEmailController::class,'__invoke']);
 
         Route::get('notify-user-to-verify-email/{id}',[VerifyEmailController::class,'notifyUserToVerifyEmail']);
 
@@ -69,6 +76,12 @@ Route::middleware('local')->group(function(){
 
         Route::controller(pricesController::class)->group(function(){
             Route::get('/prices','index');
+            Route::get('/CreateCompany/{plan}','newCompanyPage');
+        });
+        
+
+        Route::controller(CompanyController::class)->group(function(){
+            Route::post('/register/company','register');
         });
 
         Route::controller(paymentsController::class)->group(function(){
@@ -90,8 +103,8 @@ Route::middleware('local')->group(function(){
         Route::controller(helpController::class)->group(function(){
             Route::get('help-center','index');
         });
-    });
 
+    });
     Route::fallback(function(){
         return Inertia::render('dashboard')->toResponse(request())->setStatusCode(404);
     });

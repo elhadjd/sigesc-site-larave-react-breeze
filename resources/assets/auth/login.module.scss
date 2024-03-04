@@ -177,10 +177,12 @@
             .newCount{
                 padding: 5px 20px 5px 20px;
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
-                gap: 1rem;
+                gap: .5rem;
                 color: var(--textColor);
-                >span:nth-child(2){
+
+                >div:nth-child(1)>a{
                     list-style: none;
                     text-decoration: none;
                     color: #00a5cf;;

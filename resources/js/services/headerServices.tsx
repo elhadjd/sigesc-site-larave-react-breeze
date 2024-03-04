@@ -6,9 +6,10 @@ import { useFormState } from "../contexts/stateForm"
 import { useLoggedUser } from "../contexts/loggedUser"
 import { toast } from "react-toastify"
 import axios from "axios"
+import { User } from "@/types"
 
 
-export const HeaderServices = (()=>{
+export const HeaderServices = ((props:{auth:{user:User},local:string})=>{
   const {setIsFormSubmitted,isFormSubmitted} = useFormState()
   const {setUser,user} = useLoggedUser()
     const [icons,setIcons] = useState([
@@ -31,7 +32,7 @@ export const HeaderServices = (()=>{
 
       const navigates = ((route: string) : void =>{
         setIsFormSubmitted(false)
-        return router.get(route)
+        return router.get(`/${props.local}${route}`)
       })
 
       return {icon,Login,changeIcons,navigates}

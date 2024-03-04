@@ -6,11 +6,11 @@ import { FormStateProvider } from '@/contexts/stateForm'
 import { User } from '@/types'
 import React from 'react'
 
-export default function paymentsComponent(props:{auth: {user:User}},{fiscalIdentification,email}:{email?: string,fiscalIdentification?:string}) {
+export default function paymentsComponent(props:{auth: {user:User},local:string},{fiscalIdentification,email}:{email?: string,fiscalIdentification?:string}) {
   return (
     <UserLoggedProvider>
         <FormStateProvider>
-            <HeaderComponent userLog={props.auth}/>
+            <HeaderComponent auth={props.auth} local={props.local}/>
                 <Payment email={email} fiscalIdentification={fiscalIdentification}/>
             <FooterComponent/>
         </FormStateProvider>

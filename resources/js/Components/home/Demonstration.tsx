@@ -6,11 +6,13 @@ import { Buttons } from '../public/Buttons'
 import { SliderImg } from './sliderImg'
 import { Why } from './Why'
 import Apps from './apps'
-import Contacts from '../contact'
 import TextPreview from '../public/textPreview'
 import Cards from './Cards'
 import { IconBaseProps } from 'react-icons'
 import { router } from '@inertiajs/react'
+import Contacts from '../contact'
+import PartnerSection from './PartnerSection'
+import BecomePartnerSection from './PartnerSection'
 
 export interface textPreviewTs{
     content: string|null|undefined,
@@ -33,9 +35,6 @@ export const Demonstration = () => {
   const demoIcons = (()=>{
     console.log('clicou');
   })
-//   useEffect(()=>{
-//     changeIcons(0)
-//   },[])
 
   const handlerPreviewText = ((id:string)=>{
     if (id != 'false') {
@@ -52,7 +51,7 @@ export const Demonstration = () => {
 
   return (
     <div className={`${style.container} mt-20`}>
-      <TextPreview preview={textPreview} action={(e)=>handlerPreviewText(e)}/>
+        <TextPreview preview={textPreview} action={(e)=>handlerPreviewText(e)}/>
         <div className={style.header}></div>
         <div className={style.content_left}>
           <div>
@@ -73,9 +72,7 @@ export const Demonstration = () => {
         </div>
         <div className={style.content_right}>
           <iframe className="w-full h-full" src="https://www.youtube.com/embed/qW3YJAcMDrA?si=MnaN85AEVHwAUeH9" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
-        {/* <video autoPlay muted>
-            <source src="https://youtu.be/qW3YJAcMDrA" type="video/mp4"></source>
-          </video> */}
+
         </div>
         <div className={style.banner}>
           <SliderImg/>
@@ -89,8 +86,9 @@ export const Demonstration = () => {
         <div className={style.why}>
           <Why actionPreviewText={ handlerPreviewText }/>
         </div>
+        <BecomePartnerSection/>
         <div className={style.contact}>
-           <Contacts/>
+           <Contacts />
         </div>
     </div>
   )

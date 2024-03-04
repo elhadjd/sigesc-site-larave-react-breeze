@@ -1,5 +1,4 @@
 import style from '../../../assets/auth/login.module.scss'
-import { Register } from './Register'
 import { AiOutlineCheckCircle} from 'react-icons/ai'
 import {BsGithub, BsGoogle} from 'react-icons/bs'
 import { loginServices } from '../../services/login'
@@ -48,36 +47,40 @@ export const Login = ({local}:{local: string}) => {
                 <div className={style.footer}></div>
             </div>
             <div>
-                {stateForm.register == true ?(
-                    <form onSubmit={handelSubmitForm}>
-                        <header>
-                            <span>Acesse sua conta</span>
-                        </header>
-                        <div className={style.box}>
-                            <label htmlFor="email">Email:</label>
-                            <input type="email" id='email' required onChange={(e)=>handleCHangeInput(e)} value={formData.email}/>
-                        </div>
-                        <div className={style.box}>
-                            <label htmlFor="password">Password:</label>
-                            <input type="password" id='password' required onChange={(e)=>handleCHangeInput(e)} value={formData.password} />
-                        </div>
-                        <div className={style.checkbox}>
-                            <input type="checkbox" name="checkbox" id="weekConnect"  onChange={(e)=>handleCHangeInput(e)} checked={formData.weekConnect}/>
-                            <label htmlFor="weekConnect">Permanece connectado por uma semana</label>
-                        </div>
-                        <div className={style.buttons}>
-                            <button type='submit'>
-                                {!isFormSubmitted ? 'Logar' : <LoadingButtons />}
-                            </button>
-                        </div>
-                        <div className={style.newCount}>
+
+                <form onSubmit={handelSubmitForm}>
+                    <header>
+                        <span>Acesse sua conta</span>
+                    </header>
+                    <div className={style.box}>
+                        <label htmlFor="email">Email:</label>
+                        <input type="email" id='email' required onChange={(e)=>handleCHangeInput(e)} value={formData.email}/>
+                    </div>
+                    <div className={style.box}>
+                        <label htmlFor="password">Password:</label>
+                        <input type="password" id='password' required onChange={(e)=>handleCHangeInput(e)} value={formData.password} />
+                    </div>
+
+                    <div className={style.buttons}>
+                        <button type='submit'>
+                            {!isFormSubmitted ? 'Logar' : <LoadingButtons />}
+                        </button>
+                    </div>
+                    <div className={style.newCount}>
+                        <div className='flex flex-row space-x-2'>
                             <span>Não tem uma conta?</span>
-                            <span onClick={()=>handlerChangeForm(false)}> Registre-se.</span>
+                            <a href='#' onClick={()=>handlerChangeForm(false)}> Registre-se.</a>
                         </div>
-                    </form>
-                ):(
-                    <Register local={local} changeForme={()=>handlerChangeForm(true)}/>
-                )}
+                        <Link
+                        href={route('password.request')}
+                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                        Forgot your password?
+                    </Link>
+                        {/* <Link href='#' className='text-center' style={{color: 'var(--buttonsColor)'}}>Forget my password</Link> */}
+                    </div>
+                </form>
+
                 <div className={style.loginRede}>
                     <a href={`/loginWithSocial/google`}><BsGoogle/></a>
                     <a href={`/loginWithSocial/github`}><BsGithub/></a>

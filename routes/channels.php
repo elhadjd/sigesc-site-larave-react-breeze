@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -23,5 +24,10 @@ Broadcast::channel('welcomeUser.{id}', function ($user, $id) {
 
 Broadcast::channel('user.email.verified.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
+});
+
+Broadcast::channel('resetPassword.{email}', function ($email) {
+    $user = User::where('email',$email)->first();
+    return (string) $user->email === (string) $email;
 });
 

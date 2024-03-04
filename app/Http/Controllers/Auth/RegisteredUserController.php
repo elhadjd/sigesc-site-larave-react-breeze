@@ -53,7 +53,7 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            $imageName = "/users/images/avatar.png";
+            $imageName = "users/images/avatar.png";
 
             if($request->image != ''){
                 $upload = new UploadImages();

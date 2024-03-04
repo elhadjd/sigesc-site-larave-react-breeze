@@ -45,7 +45,7 @@ export const loginServices = (local: string) => {
                     return router.get('/')
                 }
                 }).catch((err) => {
-                    toast.error(err.message,{position: 'top-right'})
+                    toast.error(err.response.data.message,{position: 'top-right'})
                     console.log(err);
                 }).finally(()=>{
                     setIsFormSubmitted(false)
@@ -68,7 +68,7 @@ export const loginServices = (local: string) => {
             if(response.data.message && response.data.type == 'success') router.get('/')
         }).catch((err) => {
             console.log(err);
-            toast.error(err.message,{position: 'top-right'})
+            toast.error(err.response.data.message,{position: 'top-right'})
             if (err.response.data.type) return toast[err.response.data.type](err.response.data.message,{position: 'top-right'})
         }).finally(()=>{
             setIsFormSubmitted(false)

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 interface dataType {
   surname: string;
   name: string;
@@ -12,11 +12,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useFormState } from "../contexts/stateForm";
 import { routeApi } from "@/axiosConfig";
+import { useForm } from "@inertiajs/react";
+import { User } from "@/types";
 export const contactsServices = () => {
-  const {setIsFormSubmitted} = useFormState()
-  const { RoutePost} = routeApi()
   const [buttonSubmitDisable,setButtonSubmitDisable] = useState<boolean>(false)
-  const [formData, setFormData] = useState<dataType>({
+  const {data, setData, post,hasErrors,wasSuccessful, processing,errors} = useForm<dataType>({
     surname: "",
     name: "",
     phone: "",
@@ -26,34 +26,11 @@ export const contactsServices = () => {
     account: false
   });
 
-  const handleCHangeInput = (event: {
-    target: { id: string; value: string,checked?:boolean };
-  }) => {
-    if(event.target.id == 'newsletter'){
-        formData[event.target.id] = event.target.checked;
-    }else{
-        formData[event.target.id] = event.target.value;
-    }
-    setFormData({ ...formData });
-    setButtonSubmitDisable(false)
-  };
-
   const handelSubmitForm = (event: React.FormEvent<HTMLElement>) => {
+    if(buttonSubmitDisable) return
     event.preventDefault();
     if(buttonSubmitDisable) return toast.info('Formulario enviado',{position: 'top-right'})
-    setIsFormSubmitted(true)
-    RoutePost("en/contact/sendMessage", { ...formData })
-      .then((response) => {
-        toast.success(response.data.message,{position: "top-right"})
-        if (response.status === 200) {
-          setButtonSubmitDisable(true)
-        }
-      }).catch((err) => {
-        toast.error(err.message,{position: "top-right"})
-        console.log(err);
-      }).finally(()=>{
-        setIsFormSubmitted(false)
-      });
+    post("/en/contact/sendMessage")
   };
-  return { formData, handleCHangeInput, handelSubmitForm };
+  return { setData,data,errors,wasSuccessful,hasErrors, handelSubmitForm,processing };
 };

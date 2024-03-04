@@ -21,7 +21,7 @@
             <h1>Olá, {{ $userName }}!</h1>
             <p>Bem-vindo ao nosso serviço! Estamos muito felizes por ter você conosco.</p>
             <p>Para começar a usar sua conta, por favor confirme seu endereço de email clicando no link abaixo:</p>
-            <a href="{{ url('/verificar-email/' . $id) }}" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Confirmar Email</a>
+            <a href="{{ url('/en/verificar-email/' . $id) }}" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Confirmar Email</a>
         </div>
         <div class="footer">
             Se precisar de ajuda, não hesite em entrar em contato conosco.

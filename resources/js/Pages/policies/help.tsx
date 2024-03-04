@@ -6,11 +6,11 @@ import { FormStateProvider } from '@/contexts/stateForm'
 import { User } from '@/types'
 import React from 'react'
 
-export default function Help({auth}:{auth:{user:User}}) {
+export default function Help({auth,local}:{auth:{user:User},local:string}) {
   return (
     <UserLoggedProvider>
         <FormStateProvider>
-            <HeaderComponent userLog={auth}/>
+            <HeaderComponent auth={auth} local={local}/>
             <HelpComponent/>
             <FooterComponent/>
         </FormStateProvider>

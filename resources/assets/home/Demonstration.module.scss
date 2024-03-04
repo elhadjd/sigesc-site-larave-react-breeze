@@ -12,6 +12,7 @@
                             "w w"
                             "p p"
                             "y y"
+                            "P P"
                             "C C";
     .header{
         grid-area: h;
@@ -162,7 +163,7 @@
             box-sizing: border-box !important;
             width: 100%;
             gap: .1rem;
-            >div{               
+            >div{
                 h3{
                     font-size: 20px !important;
                     font-weight: bold;
@@ -188,7 +189,7 @@
                 height: 350px;
             }
         }
-        
+
         display: block;
     }
     @media screen and (max-width: 500px){

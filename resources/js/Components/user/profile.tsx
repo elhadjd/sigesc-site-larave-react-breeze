@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { UserServices } from './services'
 import { BiCheckboxSquare } from 'react-icons/bi'
 import { BsCheck2All } from 'react-icons/bs'
+import { Link } from '@inertiajs/react'
 
 
 export default function ProfileComponent({props,openForEdit}:{props:{auth: {user:User},local:string},openForEdit:VoidFunction}) {
@@ -32,7 +33,7 @@ export default function ProfileComponent({props,openForEdit}:{props:{auth: {user
 
                     <div className="flex justify-center gap-4 mt-2 md:justify-start">
                         <button className="px-4 py-2 text-white rounded hover:bg-blue-700" style={{backgroundColor: "var(--buttonsColor)"}} onClick={openForEdit}>Editar Perfil</button>
-                        {/* {!user.possuiLoja && <button className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-700" onClick={criarLoja}>Criar Loja</button>} */}
+                        <Link href={route('password.update-request')} className="px-4 py-2 text-white bg-gray-500 rounded hover:bg-gray-700">Muda a minha senha</Link>
                     </div>
                 </div>
             </div>

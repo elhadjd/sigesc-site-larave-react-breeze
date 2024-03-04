@@ -7,10 +7,10 @@
     <style>
         body { font-family: 'Arial', sans-serif; background-color: #f0f4f8; color: #333; }
         .container { max-width: 600px; margin: auto; background-color: #ffffff; border: 1px solid #ddd; }
-        .header { background-color: #4CAF50; color: #ffffff; padding: 20px; text-align: center; }
+        .header { background-color: #00a5cf; color: #ffffff; padding: 20px; text-align: center; }
         .content { padding: 20px; }
         .content p { margin: 10px 0; }
-        .button { background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; }
+        .button { background-color: #00a5cf; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; }
         .logo { display: block; margin: 0 auto 20px; max-width: 100px; }
     </style>
 </head>

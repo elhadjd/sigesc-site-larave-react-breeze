@@ -2,20 +2,19 @@ import React from 'react'
 import style from '../../../assets/auth/login.module.scss'
 import {BiCaretDown,BiSearch} from 'react-icons/bi'
 import { userRegisterServices } from '../../services/register'
-import { ToastContainer } from 'react-toastify'
 import { RxAvatar } from 'react-icons/rx'
 import { PiPlus } from 'react-icons/pi'
 import { PreviewImage } from '@/services/public/previewImage'
 import LoadingButtons from '@/ui/loadingButtons'
 import { useFormState } from '@/contexts/stateForm'
-export const Register = ({changeForme,local}:{changeForme:VoidFunction,local:string}) => {
+import { Link } from '@inertiajs/react'
+export const Register = ({local}:{local:string}) => {
     const {isFormSubmitted} = useFormState()
     const {countries,formData,handelSubmitForm,handleCHangeCountry,handleCHangeInput,handlerSearchCountry,stateFormListCountry,setStateFormListCountry} = userRegisterServices(local)
     const {onFileChange,createImg,image} = PreviewImage()
 
     return (
     <div>
-        <ToastContainer/>
         <form onSubmit={(e)=>handelSubmitForm(e,image)}>
             <header>
                 <label htmlFor="image" className=' w-full cursor-pointer relative flex text-gray-300 justify-center items-center'>
@@ -90,7 +89,7 @@ export const Register = ({changeForme,local}:{changeForme:VoidFunction,local:str
             </div>
             <div className={style.newCount}>
                 <span>Não tem uma conta?</span>
-                <span onClick={changeForme}> Entrar.</span>
+                <Link href={`/${local}/auth`}> Entrar.</Link>
             </div>
         </form>
     </div>

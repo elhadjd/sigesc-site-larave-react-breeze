@@ -7,9 +7,17 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class PasswordController extends Controller
 {
+
+    function index():Response {
+        return Inertia::render('profile/UpdatePasswordForm',[
+            'local'=>request()->getLocale()
+        ]);
+    }
     /**
      * Update the user's password.
      */

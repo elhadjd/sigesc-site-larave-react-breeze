@@ -11,6 +11,7 @@ class paymentsController extends Controller
     function index($email= null,$fiscalIdentification= null) {
         return Inertia::render('payments/index',
         [
+            'local'=>request()->getLocale(),
             'email'=>$email,
             'fiscalIdentification'=>$fiscalIdentification
         ]);

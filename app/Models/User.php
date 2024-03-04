@@ -25,6 +25,7 @@ class User extends Authenticatable
         'socialType',
         'social_id',
         'social_token',
+        'accountType',
         'social_refresh_token',
         'password',
     ];

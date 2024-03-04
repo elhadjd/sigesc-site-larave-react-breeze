@@ -3,7 +3,9 @@ import React, { ReactNode, createContext, useContext, useState } from "react";
 
 interface LoggedUserData{
     user: User,
-    setUser: (value: User)=>void
+    setUser: (value: User)=>void,
+    local: string,
+    setLocal: (value: string)=>void
 }
 
 interface UserLoggedProviderProps{
@@ -21,9 +23,10 @@ export const useLoggedUser = ()=>{
 }
 
 export const UserLoggedProvider:React.FC<UserLoggedProviderProps> = ({children})=>{
+    const [local,setLocal] = useState('en')
     const [user,setUser] = useState<User>()
     return (
-        <loggedUserContext.Provider value={{user,setUser}}>
+        <loggedUserContext.Provider value={{user,setUser,local,setLocal,}}>
             {children}
         </loggedUserContext.Provider>
     )

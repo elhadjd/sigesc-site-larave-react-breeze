@@ -10,7 +10,7 @@ export default function Privacy({auth,local}:{auth:{user:User},local:string}) {
   return (
     <UserLoggedProvider>
         <FormStateProvider>
-            <HeaderComponent userLog={auth}/>
+            <HeaderComponent auth={auth} local={local}/>
             <PrivacyComponent/>
             <FooterComponent/>
         </FormStateProvider>
