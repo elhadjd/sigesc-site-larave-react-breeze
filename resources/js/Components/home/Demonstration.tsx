@@ -13,6 +13,7 @@ import { router } from '@inertiajs/react'
 import Contacts from '../contact'
 import PartnerSection from './PartnerSection'
 import BecomePartnerSection from './PartnerSection'
+import { motion } from 'framer-motion';
 
 export interface textPreviewTs{
     content: string|null|undefined,
@@ -49,32 +50,51 @@ export const Demonstration = () => {
     return router.get(route)
   })
 
-  return (
-    <div className={`${style.container} mt-20`}>
-        <TextPreview preview={textPreview} action={(e)=>handlerPreviewText(e)}/>
-        <div className={style.header}></div>
-        <div className={style.content_left}>
-          <div>
-            <h1>
-              Software de Gestão Comercial Integral
-            </h1>
-          </div>
-          <div>
-            <p id='text1' onClick={()=>handlerPreviewText('text1')}>
-            Explore a solução definitiva para a gestão eficiente do seu negócio com nosso Software de Gestão Comercial. Do PDV às compras, faturamento, controle de estoque e gerenciamento de funcionários, abrangemos todas as áreas críticas. Simplificamos seu dia a dia com uma plataforma intuitiva que impulsiona a produtividade, economiza tempo e aumenta os lucros. Descubra como transformar sua operação comercial e alcance o sucesso.
-              <a href="https://geral.sisgesc.net/gettingStarted"> Inscreva-se agora</a>
-            </p>
-          </div>
-          <div className={style.buttons}>
-            <Buttons action={()=>handelClickButton('/contact')} changeIcons={changeIcons} text='Entrar em contacto' icon={iconContact}  type='button' style={style.contact}/>
-            <Buttons action={()=>handelClickButton('/prices')} text='Demo' changeIcons={(()=>{})} icon={<AiFillCaretRight/>} type='button' style={style.demo}/>
-          </div>
-        </div>
-        <div className={style.content_right}>
-          <iframe className="w-full h-full" src="https://www.youtube.com/embed/qW3YJAcMDrA?si=MnaN85AEVHwAUeH9" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+  const videoUrl = "https://www.youtube.com/embed/qW3YJAcMDrA?si=svwSQ5l08UwSWpgY&amp;start=5";
 
+  const { width } = useWindowSize();
+  const isMobile = width <= 768;
+
+  const title = "SIGESC: Solução Completa em Software de Gestão Comercial para Impulsionar Seu Negócio";
+  const description = "Descubra o poder do SIGESC, a solução definitiva em software de gestão comercial projetada para modernizar e otimizar as operações do seu negócio. Com recursos avançados como gestão de PDV, controle financeiro, gerenciamento de estoque, e integração de compras, o SIGESC é o aliado perfeito para empresas que buscam eficiência, escalabilidade e inovação.";
+
+  // Truncar descrição para mobile
+  const mobileDescription = description.length > 150 ? `${description.substring(0, 150)}...` : description;
+  return (
+    <div className=' px-4 sm:px-6 lg:px-8'>
+
+<motion.div className="bg-gradient-to-r mt-20 mb-4 rounded from-[--app_color] to-[--buttonsColor] text-white py-16">
+      <div className="max-w-7xl  px-4 sm:px-6 lg:px-8 mx-auto">
+        <div className={`flex flex-col ${isMobile ? '' : 'md:flex-row'} items-center justify-between space-y-4 md:space-y-0`}>
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className={`text-center ${isMobile ? '' : 'md:text-left'} md:w-1/2`}
+          >
+            <h1 className="text-white text-xl flex text-start font-bold">{title}</h1>
+            <p className="mt-4 text-start max-w-md text-white md:max-w-lg">{isMobile ? mobileDescription : description}</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className={`w-full ${isMobile ? 'max-w-md' : 'md:max-w-lg'} aspect-video overflow-hidden rounded-lg shadow-xl`}
+          >
+            <iframe
+              src={videoUrl}
+              title="SIGESC Video Introduction"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
+          </motion.div>
         </div>
-        <div className={style.banner}>
+      </div>
+    </motion.div>
+
+    <div className={style.banner}>
           <SliderImg/>
         </div>
         <div className={style.Cards}>
@@ -93,3 +113,37 @@ export const Demonstration = () => {
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+  });
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+      });
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowSize;
+}
+
+
+
+

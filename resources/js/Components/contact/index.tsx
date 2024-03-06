@@ -18,7 +18,7 @@ export default function Contacts(props:{auth:{user:User},errors?:any}) {
   }, [wasSuccessful]);
 
   return (
-    <motion.div className="mt-20 p-6 bg-blue-100" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <motion.div className="mt-16 p-6 bg-blue-100" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <ToastContainer />
       <div className="container mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="p-6">
@@ -54,10 +54,11 @@ export default function Contacts(props:{auth:{user:User},errors?:any}) {
                 <InputComponent id='Apelido' label='Apelido:' placeholder='Apelido' setData={(e)=>setData('surname',e)} type='text' value={data.surname} />
                 <InputComponent id='email' label='E-mail:' placeholder='Email' setData={(e)=>setData('email',e)} type='email' value={data.email} />
                 <textarea name="message" className='w-full outline-purple-600 border-gray-300 max-h-28 min-h-20 rounded' value={data.message} onChange={(e)=>setData('message', e.target.value)} required id="message"></textarea>
+                {errors.message != null && <span className='text-red-600 text-sm'>{errors.message}</span>}
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className=" bg-[--buttonsColor] text-white font-bold py-2 px-4 rounded"
+                  className=" bg-[--buttonsColor] flex justify-center text-white font-bold py-2 px-4 rounded"
                   type="submit"
                 >
                   {processing ? <LoadingButtons /> : 'Enviar'}
@@ -72,10 +73,14 @@ export default function Contacts(props:{auth:{user:User},errors?:any}) {
 }
 
 function InputComponent(props:{label:string,type:string,value:string,setData(e:any):void,id:string,placeholder:string,}) {
+    const { errors } = contactsServices();
     return (
         <span>
             <label htmlFor={props.id}>{props.label}</label>
-            <input type={props.type} className='w-full rounded border border-gray-300' value={props.value} onChange={(e)=>props.setData(e.target.value)} required id={props.id} placeholder={props.placeholder}/>
+            <input type={props.type}
+            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md focus:outline-none focus:shadow-outline transition duration-300"
+             value={props.value} onChange={(e)=>props.setData(e.target.value)} required id={props.id} placeholder={props.placeholder}/>
+            {errors[props.name] != null && <span className='text-red-600 text-sm'>{errors[props.name]}</span>}
         </span>
     )
 }

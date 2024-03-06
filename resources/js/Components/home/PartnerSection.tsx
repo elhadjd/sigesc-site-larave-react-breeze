@@ -16,7 +16,7 @@ export default function BecomePartnerSection() {
           Junte-se ao nosso programa de parcerias e explore novas oportunidades de crescimento. Beneficie de nosso suporte dedicado, treinamentos exclusivos e acesso a recursos que impulsionarão seu sucesso.
         </p>
         <motion.div whileHover={{ scale: 1.05 }}>
-          <Link href="en/auth" className="inline-block bg-blue-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-600 transition-colors">
+          <Link href="en/auth/register" className="inline-block bg-blue-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-600 transition-colors">
             Cadastre-se Agora
           </Link>
         </motion.div>

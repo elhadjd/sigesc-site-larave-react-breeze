@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Support\Facades\Broadcast;
 
@@ -31,3 +32,9 @@ Broadcast::channel('resetPassword.{email}', function ($email) {
     return (string) $user->email === (string) $email;
 });
 
+
+Broadcast::channel('Chat.{sessionId}', function ($sessionId) {
+    $chat = Chat::where('session',$sessionId)->first();
+    if($chat || $chat->state) return true;
+    return true;
+});

@@ -61,12 +61,12 @@ export const userRegisterServices = (local:string) => {
     if (stateSubmit) return
     if (formData.password != formData.password_confirmation) return toast.warning('As duas senha não estão egual, por favor verifica e tenta novamente !!!')
     setIsFormSubmitted(true)
-    RoutePost(`${local}/registerUser`,{...formData})
+    RoutePost(`${local}/auth/registerUser`,{...formData})
     .then((response) => {
       toast.success(response.data.message,{position: 'top-right'})
       if(response.data.message && response.data.type == 'success') router.get('/verificar-email')
     }).catch((err) => {
-    //   toast.warning(err.response.data.message,{position: 'top-right'})
+      toast.warning(err.response.data.message,{position: 'top-right'})
       console.log(err);
     }).finally(()=>{
       setIsFormSubmitted(false)

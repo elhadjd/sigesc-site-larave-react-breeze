@@ -11,7 +11,7 @@ export default function contact(props:{auth: {user:User},local:string}) {
     <UserLoggedProvider>
         <FormStateProvider>
             <HeaderComponent auth={props.auth} local={props.local}/>
-            <Contacts/>
+            <Contacts auth={props.auth}/>
             <FooterComponent/>
         </FormStateProvider>
     </UserLoggedProvider>

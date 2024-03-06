@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChatEvent;
 use App\Events\emailVerifiedEvent;
 use App\Events\NewUserNotification;
 use App\Events\UserEvent;

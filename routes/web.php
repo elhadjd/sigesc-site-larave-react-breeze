@@ -1,25 +1,20 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Auth\indexController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Policies\faqController;
-use App\Http\Controllers\Policies\helpController;
-use App\Http\Controllers\Policies\privacyController;
-use App\Http\Controllers\Policies\termsController;
+use App\Http\Controllers\Policies\ResourcesController;
 use App\Http\Controllers\public\contactController;
 use App\Http\Controllers\public\paymentsController;
 use App\Http\Controllers\public\pricesController;
 use App\Http\Controllers\profile\UserProfileController;
+use App\Http\Controllers\public\BlogController;
+use App\Http\Controllers\public\ChatController;
+use App\Http\Controllers\public\clientDepoimentsController;
 use App\Http\Controllers\public\CompanyController;
 use App\Http\Controllers\public\modules;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Broadcast;
-use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\shop\shopController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -63,11 +58,14 @@ require __DIR__.'/auth.php';
                 Route::get('profile','index');
             });
             Route::get('/verificar-email',[VerifyEmailController::class,'emailVerifyPage']);
+
+
         });
 
-        Route::controller(RegisteredUserController::class)->group(function(){
-            Route::post('/registerUser','store');
-        });
+            Route::controller(RegisteredUserController::class)->group(function(){
+                Route::get('auth/register','create');
+                Route::post('auth/registerUser','store');
+            });
 
         Route::controller(contactController::class)->group(function(){
             Route::post('contact/sendMessage','senMessage');
@@ -78,7 +76,7 @@ require __DIR__.'/auth.php';
             Route::get('/prices','index');
             Route::get('/CreateCompany/{plan}','newCompanyPage');
         });
-        
+
 
         Route::controller(CompanyController::class)->group(function(){
             Route::post('/register/company','register');
@@ -88,22 +86,27 @@ require __DIR__.'/auth.php';
             Route::get('/payments/{fiscalIdentification?}/{email?}','index');
         });
 
-        Route::controller(privacyController::class)->group(function(){
-            Route::get('/privacy-policy','index');
+        Route::controller(ResourcesController::class)->group(function(){
+            Route::get('resources/{resource}','index')->name('resources');
         });
 
-        Route::controller(termsController::class)->group(function(){
-            Route::get('terms-of-service','index');
+        Route::controller(ChatController::class)->group(function(){
+            Route::get('new-chat/{sessionUser?}','index');
+            Route::post('/chat-conversation/{session}','create');
+            Route::post('chat-end','store');
         });
 
-        Route::controller(faqController::class)->group(function(){
-            Route::get('faq','index');
+        Route::controller(clientDepoimentsController::class)->group(function(){
+            Route::get('clients/{page}','index')->name('clients');
         });
 
-        Route::controller(helpController::class)->group(function(){
-            Route::get('help-center','index');
+        Route::controller(BlogController::class)->group(function(){
+            Route::get('blog/{blog?}','index')->name('blog');
         });
 
+        Route::controller(shopController::class)->group(function(){
+            Route::get('shop/{page?}','index')->name('shop');
+        });
     });
     Route::fallback(function(){
         return Inertia::render('dashboard')->toResponse(request())->setStatusCode(404);

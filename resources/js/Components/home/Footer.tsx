@@ -7,12 +7,14 @@ import { BsBuilding, BsCash, BsFacebook } from 'react-icons/bs';
 import { FaUsers } from 'react-icons/fa';
 import { Link } from '@inertiajs/react';
 import { useLoggedUser } from '@/contexts/loggedUser';
+import ChatComponent from '@/ui/chat';
 
 export default function FooterComponent() {
   const { local } = useLoggedUser();
 
   return (
-    <footer className="bg-blue-900 text-white py-8">
+    <footer className="bg-gradient-to-r from-[--app_color] to-[--buttonsColor] text-white py-8">
+        <ChatComponent/>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
@@ -20,7 +22,7 @@ export default function FooterComponent() {
             <p className='text-white'>Transformando a gestão comercial com tecnologia e inovação.</p>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2">Links Rápidos</h4>
+            <h4 className="text-lg font-semibold mb-2">Redes Sociais</h4>
             <ul className='flex flex-col space-y-1'>
                 <li><a href="https://www.facebook.com/Sisgesc" target="_blank" className='flex items-center gap-2' rel="noopener noreferrer"><BsFacebook/> Facebook</a></li>
                 <li><a href="https://www.tiktok.com/@sigesc" target="_blank" className='flex items-center gap-2' rel="noopener noreferrer"><BiLogoTiktok/> TikTok</a></li>
@@ -29,7 +31,7 @@ export default function FooterComponent() {
             </ul>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2">Redes Sociais</h4>
+            <h4 className="text-lg font-semibold mb-2">Links Rápidos</h4>
             <ul className='flex flex-col space-y-1'>
                 <li><Link href="/contact"><a className='flex items-center gap-2'><AiOutlineContacts/> Contato</a></Link></li>
                 <li><a href="https://glamoure.net" target="_blank"className='flex items-center gap-2' rel="noopener noreferrer"><BiStore/> Loja</a></li>
@@ -43,10 +45,11 @@ export default function FooterComponent() {
           <div>
             <h4 className="text-lg font-semibold mb-2">Recursos</h4>
             <ul className='flex flex-col space-y-1'>
-                <li><Link href={`/${local}/privacy-policy`}><a className='flex items-center gap-2'>Política de Privacidade</a></Link></li>
-                <li><Link href={`/${local}/terms-of-service`}><a className='flex items-center gap-2'>Termos de Serviço</a></Link></li>
-                <li><Link href={`/${local}/faq`}><a className='flex items-center gap-2'>FAQ</a></Link></li>
-                <li><Link href={`/${local}/help-center`}><a className='flex items-center gap-2'>Centro de Ajuda</a></Link></li>
+                <li><Link href={route('resources',{resource: 'privacy'})}><a className='flex items-center gap-2'>Política de Privacidade</a></Link></li>
+                <li><Link href={route('resources',{resource: 'terms'})}><a className='flex items-center gap-2'>Termos de Serviço</a></Link></li>
+                <li><Link href={route('resources',{resource: 'faq'})}><a className='flex items-center gap-2'>FAQ</a></Link></li>
+                <li><Link href={route('resources',{resource: 'help'})}><a className='flex items-center gap-2'>Centro de Ajuda</a></Link></li>
+                <li><Link href={route('resources',{resource: 'learningCenter'})}>Aprenda sobre SIGESC</Link></li>
             </ul>
           </div>
         </div>

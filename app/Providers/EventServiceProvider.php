@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\ChatEvent;
 use App\Events\contactFormEvent;
 use App\Events\emailVerifiedEvent;
 use App\Events\UserEvent;
 use App\Events\welcomeUserEvent;
+use App\Listeners\ChatListener;
 use App\Listeners\contactFormListener;
 use App\Listeners\UsersListener;
 use App\Listeners\welcomeUserListener;
@@ -39,6 +41,10 @@ class EventServiceProvider extends ServiceProvider
         contactFormEvent::class => [
             contactFormListener::class,
         ],
+
+        ChatEvent::class =>[
+            ChatListener::class,
+        ]
     ];
 
     /**

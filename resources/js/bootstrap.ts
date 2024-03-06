@@ -47,4 +47,4 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
     disableStats: false,
 
-  });
+});
