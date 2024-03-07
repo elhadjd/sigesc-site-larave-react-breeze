@@ -7,12 +7,12 @@
     <style>
         body { font-family: 'Arial', sans-serif; background-color: #f0f4f8; margin: 0; padding: 0; }
         .container { max-width: 600px; margin: auto; background-color: #ffffff; border: 1px solid #ddd; }
-        .header { background-color: #0056b3; color: #ffffff; padding: 20px; text-align: center; }
+        .header { background-color: #17a2b8; color: #ffffff; padding: 20px; text-align: center; }
         .content { padding: 20px; }
         .footer { background-color: #f0f4f8; color: #888; padding: 20px; text-align: center; font-size: 14px; }
         .conversation-start { background-color: #f9f9f9; padding: 15px; margin-top: 20px; border-radius: 8px; }
         .conversation-start p { margin: 0; padding: 10px 0; }
-        .start-btn { background-color: #28a745; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px; }
+        .start-btn { background-color: #17a2b8; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px; }
     </style>
 </head>
 <body>

@@ -28,12 +28,10 @@ export default function UpdatePasswordForm({ auth,local }:{auth:{user:User},loca
             onError: (errors) => {
                 if (errors.password) {
                     reset('password', 'password_confirmation');
-                    passwordInput.current.focus();
                 }
 
                 if (errors.current_password) {
                     reset('current_password');
-                    currentPasswordInput.current.focus();
                 }
             },
         });
@@ -43,7 +41,7 @@ export default function UpdatePasswordForm({ auth,local }:{auth:{user:User},loca
         <UserLoggedProvider>
             <FormStateProvider>
                 <HeaderComponent auth={auth} local={local}/>
-                <div className="min-h-screen flex flex-col mt-20 sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+                <div className="min-h-screen flex flex-col mt-16 sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
                     <div>
                         <Link href={`/${local}`}>
                             <img src="https://geral.sisgesc.net/favicon.ico" className='w-20 h-20 rounded-full' alt="SIGESC FAVICON" />
@@ -119,6 +117,11 @@ export default function UpdatePasswordForm({ auth,local }:{auth:{user:User},loca
                                     >
                                         <p className="text-sm text-gray-600 ">Saved.</p>
                                     </Transition>
+                                    <Link
+                                        href={route('password.request')}
+                                        className="mt-4 inline-block text-sm text-blue-600 hover:text-blue-800 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md">
+                                        Esqueceu sua senha?
+                                    </Link>
                                 </div>
                             </form>
                         </section>

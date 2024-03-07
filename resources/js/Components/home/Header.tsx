@@ -104,7 +104,7 @@ export const HeaderComponent = ({ auth, local }) => {
                             <BsQuestionCircle className="text-lg" />
                             <span>Suport</span>
                         </Link>
-                        <Link href="/contact" className="flex flex-row space-x-2 items-center p-2 text-gray-600 hover:text-blue-600">
+                        <Link href="/blog" className="flex flex-row space-x-2 items-center p-2 text-gray-600 hover:text-blue-600">
                             <FaRegNewspaper /><span>Blog</span>
                         </Link>
                     </nav>

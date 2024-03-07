@@ -12,7 +12,7 @@ export interface UserProfile{
     address:string
     country:string,
     id:number,
-    image:string | ArrayBuffer | null,
+    image:string,
     phone:string,
     surname:string
 }

@@ -9,7 +9,7 @@ export const Prices = () => {
   };
 
   return (
-    <div className="mt-20 bg-[var(--appColor)] py-12 text-center flex flex-col gap-6">
+    <div className="mt-16 bg-[var(--appColor)] py-12 text-center flex flex-col gap-6">
       <div className="text-white">
         <h1 className="text-3xl font-bold">Soluções Acessíveis para o Sucesso: Conheça os Preços do Nosso Software de Gestão Integrado comercial.</h1>
         <p className="mt-4 mx-auto max-w-4xl text-lg">Descubra pacotes personalizados que se adequam ao seu negócio. Nosso software de gestão integrado comercial oferece recursos como PDV avançado, controle financeiro, gestão de compras e inventário. Maximize a eficiência operacional enquanto mantém os custos sob controle. Escolha a solução certa para impulsionar o crescimento da sua empresa. Explore nossos preços competitivos e leve seu negócio ao próximo nível com inovação, segurança e eficiência.</p>

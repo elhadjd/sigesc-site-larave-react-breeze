@@ -18,6 +18,7 @@ export const Login = ({ local }:{local:string}) => {
     const {isFormSubmitted} = useFormState()
 
     return (
+
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-6 py-8">
             <ToastContainer/>
             <Link href='/' className='static text-3xl font-bold'>
@@ -26,9 +27,7 @@ export const Login = ({ local }:{local:string}) => {
             </Link>
             <h1 className='text-gray-600 p-2'>Login</h1>
             <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+                 initial={{ y: -250, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300 }}
                 className="max-w-md w-full space-y-8 bg-white p-6 rounded-xl shadow-lg"
             >
                 <div className='flex justify-center text-3xl text-[--buttonsColor]'>

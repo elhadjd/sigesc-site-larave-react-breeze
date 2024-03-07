@@ -21,6 +21,7 @@ useEffect(()=>{
         localStorage.setItem('chatSession',chatSession)
         localStorage.setItem('chatUser',"support")
     }
+
 },[])
 
   return (
@@ -28,7 +29,7 @@ useEffect(()=>{
       <div className={`${style.App} relative`}>
         <FormStateProvider>
             <HeaderComponent auth={props.auth} local={props.local}/>
-                <Demonstration/>
+                <Demonstration auth={props.auth}/>
                 {/* <Progress/> */}
             <FooterComponent/>
         </FormStateProvider>

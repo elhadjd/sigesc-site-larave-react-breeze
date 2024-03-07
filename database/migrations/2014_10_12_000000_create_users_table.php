@@ -16,7 +16,7 @@ return new class extends Migration
             $table->enum('socialType',['sisgesc.net','facebook','github','google'])->nullable();
             $table->string('social_id')->nullable();
             $table->string('name');
-            $table->enum('accountType',['client','pattern'])->default('client');
+            $table->enum('accountType',['client','partner'])->default('client');
             $table->string('social_token')->nullable();
             $table->string('social_refresh_token')->nullable();
             $table->string('email')->unique();

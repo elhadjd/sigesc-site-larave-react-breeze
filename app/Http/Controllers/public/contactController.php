@@ -98,7 +98,7 @@ class contactController extends Controller
 
                 Mail::to($user->email)->send(new EmailVerify($data));
 
-                Auth::login($user);
+                Auth::login($user->fresh());
             });
         }
 

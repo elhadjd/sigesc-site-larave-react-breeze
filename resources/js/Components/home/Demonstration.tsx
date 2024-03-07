@@ -1,41 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import {AiFillCaretRight} from 'react-icons/ai'
 import {CgChevronRight,CgChevronDoubleRight} from 'react-icons/cg'
 import style from '../../../assets/home/Demonstration.module.scss'
-import { Buttons } from '../public/Buttons'
 import { SliderImg } from './sliderImg'
 import { Why } from './Why'
 import Apps from './apps'
-import TextPreview from '../public/textPreview'
 import Cards from './Cards'
-import { IconBaseProps } from 'react-icons'
 import { router } from '@inertiajs/react'
 import Contacts from '../contact'
-import PartnerSection from './PartnerSection'
 import BecomePartnerSection from './PartnerSection'
 import { motion } from 'framer-motion';
+import { User } from '@/types'
 
 export interface textPreviewTs{
     content: string|null|undefined,
     state:boolean
 }
 
-export const Demonstration = () => {
-  const [icons,setIcons] = useState<IconBaseProps[]>([
-    <CgChevronRight/>,
-    <CgChevronDoubleRight/>
-  ])
-  const [iconContact,setIcon] = useState<IconBaseProps[]>()
+export const Demonstration = ({auth}:{auth:{user:User}}) => {
   const [textPreview,setTextPreview] = useState<textPreviewTs>({
     state: false,
     content: ''
   })
-  const changeIcons = ((position:number)=>{
-    return setIcon(icons[position])
-  })
-  const demoIcons = (()=>{
-    console.log('clicou');
-  })
+
 
   const handlerPreviewText = ((id:string)=>{
     if (id != 'false') {
@@ -44,10 +30,6 @@ export const Demonstration = () => {
     }
     textPreview.state = !textPreview.state
     setTextPreview({...textPreview})
-  })
-
-  const handelClickButton = ((route:string)=>{
-    return router.get(route)
   })
 
   const videoUrl = "https://www.youtube.com/embed/qW3YJAcMDrA?si=svwSQ5l08UwSWpgY&amp;start=5";
@@ -108,7 +90,7 @@ export const Demonstration = () => {
         </div>
         <BecomePartnerSection/>
         <div className={style.contact}>
-           <Contacts />
+           <Contacts auth={auth}/>
         </div>
     </div>
   )

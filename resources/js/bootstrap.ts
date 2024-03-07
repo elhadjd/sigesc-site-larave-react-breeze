@@ -38,13 +38,7 @@ window.Pusher = Pusher
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'local',
-    wsHost: window.location.hostname,
-    wsPort: 6001,
-    wssPort: 6001,
-    forceTLS: false,
-    cluster:'mt1',
-    enabledTransports: ['ws', 'wss'],
-    disableStats: false,
-
+    key: '220c2b5dc4701d1bea4a',
+    cluster: 'mt1',
+    forceTLS: true
 });

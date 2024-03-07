@@ -12,7 +12,7 @@ interface UserLoggedProviderProps{
     children: ReactNode
 }
 
-const loggedUserContext = createContext<LoggedUserData | undefined>()
+const loggedUserContext = createContext<LoggedUserData | undefined>(undefined)
 
 export const useLoggedUser = ()=>{
     const context = useContext(loggedUserContext)

@@ -27,10 +27,14 @@ export const contactsServices = () => {
   });
 
   const handelSubmitForm = (event: React.FormEvent<HTMLElement>) => {
-    if(buttonSubmitDisable) return
     event.preventDefault();
+    if(processing || !errors) {
+        toast.info('Formulário enviado',{position: 'top-right'})
+        return
+    }
     if(buttonSubmitDisable) return toast.info('Formulario enviado',{position: 'top-right'})
     post("/en/contact/sendMessage")
+    setButtonSubmitDisable(true)
   };
   return { setData,data,errors,wasSuccessful,hasErrors, handelSubmitForm,processing };
 };

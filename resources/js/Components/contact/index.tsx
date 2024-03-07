@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import WhatsApp from '../public/whatsApp';
 import { ToastContainer, toast } from 'react-toastify';
 import LoadingButtons from '@/ui/loadingButtons';
-import { useFormState } from '@/contexts/stateForm';
 import { User } from '@/types';
 import { contactsServices } from '@/services/contacts';
 
@@ -53,8 +52,21 @@ export default function Contacts(props:{auth:{user:User},errors?:any}) {
                 <InputComponent id='surname' label='Nome:' placeholder='Nome' setData={(e)=>setData('name',e)} type='text' value={data.name} />
                 <InputComponent id='Apelido' label='Apelido:' placeholder='Apelido' setData={(e)=>setData('surname',e)} type='text' value={data.surname} />
                 <InputComponent id='email' label='E-mail:' placeholder='Email' setData={(e)=>setData('email',e)} type='email' value={data.email} />
+                <InputComponent id='phone' label='Phone:' placeholder='Telefone' setData={(e)=>setData('phone',e)} type='text' value={data.phone} />
                 <textarea name="message" className='w-full outline-purple-600 border-gray-300 max-h-28 min-h-20 rounded' value={data.message} onChange={(e)=>setData('message', e.target.value)} required id="message"></textarea>
                 {errors.message != null && <span className='text-red-600 text-sm'>{errors.message}</span>}
+
+
+                <span className='flex w-full flex-row space-x-2'>
+                    <label className='flex-auto truncate' htmlFor="account">Criar conta</label>
+                    <input className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md focus:outline-none focus:shadow-outline transition duration-300'
+                    type="checkbox" onChange={(e)=>setData('account', e.target.checked)} name='account' id='account'/>
+                </span>
+                <span className='flex w-full flex-row space-x-2'>
+                    <label className='flex-auto truncate' htmlFor="newsletter">Recebes novidades</label>
+                    <input className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md focus:outline-none focus:shadow-outline transition duration-300'
+                    type="checkbox" onChange={(e)=>setData('newsletter', e.target.checked)} name='newsletter' id='newsletter'/>
+                </span>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

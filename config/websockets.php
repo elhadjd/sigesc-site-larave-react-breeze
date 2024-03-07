@@ -31,7 +31,15 @@ return [
             'capacity' => null,
             'enable_client_messages' => false,
             'enable_statistics' => true,
+            'options' => [
+                'cluster' => 'mt1',
+                'useTLS' => true
+            ],
         ],
+    ],
+    'options' => [
+        'cluster' => 'mt1',
+        'useTLS' => true
     ],
 
     /*

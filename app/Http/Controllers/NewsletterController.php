@@ -27,7 +27,7 @@ class NewsletterController extends Controller
             'surname'=>$surname,
             'email'=>$email
         ];
-        if(!newsletter::where('email',$email)){
+        if(!newsletter::where('email',$email)->first()){
             newsletter::create($data);
             Mail::to($email)->send(new welcomeNewsletter($data));
         }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const PreviewImage = (()=>{
-    const [image, setImage] = useState<string | ArrayBuffer | null>()
+    const [image, setImage] = useState<any>()
     const onFileChange = (e:any) => {
         var files = e.target.files || e.dataTransfer.files;
         let arquivo = files[0].name;

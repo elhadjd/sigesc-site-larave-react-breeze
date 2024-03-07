@@ -10,7 +10,7 @@
         .logo-header { background-color: #ffffff; padding: 10px; text-align: center; }
         .content { padding: 20px; color: #333; }
         .footer { background-color: #eeeeee; padding: 10px; text-align: center; font-size: 12px; }
-        .button { background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; }
+        .button { background-color: #17a2b8; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; }
     </style>
 </head>
 <body>

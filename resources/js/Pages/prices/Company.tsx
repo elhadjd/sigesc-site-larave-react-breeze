@@ -44,7 +44,7 @@ handleSelectActivity,handleSelectCountry,handleSubmit,showActivityDropdown,setSh
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="max-w-4xl mt-28 mb-10 mx-auto bg-white p-8 rounded-lg shadow mt-12"
+                className="max-w-4xl mt-20 w-full md:w-1/2 mb-10 mx-auto bg-white p-8 rounded-lg shadow"
             >
                 <h1 className="text-2xl font-bold mb-4">Cadastro de Empresa</h1>
                 <p className="mb-8">Preencha as informações abaixo para registrar sua empresa no nosso sistema e começar a desfrutar de todos os recursos disponíveis.</p>

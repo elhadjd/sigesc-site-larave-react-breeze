@@ -17,17 +17,19 @@ export const Register = ({ local }:{local:string}) => {
     const { isFormSubmitted } = useFormState();
 
     return (
-        <motion.div style={{width: "300px !importante"}} className="flex flex-col items-center justify-center p-6 bg-gradient-to-r from-blue-400 to-blue-600 min-h-screen">
+        <motion.div style={{width: "300px !importante"}} className="flex flex-col items-center justify-center p-6 shadow-md bg-gray-100 min-h-screen">
             <ToastContainer/>
-            <Link href='/' className='font-bold text-4xl text-white'>SIGESC</Link>
-            <h1 className='p-2 text-white'>Cadastro de usuario</h1>
+            <Link href='/' className='static mb-2 text-3xl font-bold'>
+                <span className='text-[--app_color]'>S</span>
+                <span className='text-[--buttonsColor]'>IGESC</span>
+            </Link>
             <motion.div className='w-full flex justify-center items-center' initial={{ y: -250, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300 }}>
                 <form onSubmit={(e) => handelSubmitForm(e, image)} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md w-full">
                     <div className="text-center mb-4">
                         <AiOutlineUserAdd className="mx-auto text-5xl" />
                         <h2 className="text-2xl font-bold">Crie sua conta</h2>
                     </div>
-                    {/* Campos do formulário */}
+
                     <div className="space-y-4">
                     <div className="mt-4">
                         <label htmlFor="surname" className="block text-sm font-medium text-gray-700">Apelido:</label>
@@ -129,7 +131,7 @@ export const Register = ({ local }:{local:string}) => {
 
                     </div>
                     <div className="mt-6">
-                        <button type='submit' className="w-full flex justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-150 ease-in-out">
+                        <button type='submit' className="w-full flex justify-center bg-[--buttonsColor] hover:opacity-80 text-white font-bold py-2 px-4 rounded transition duration-150 ease-in-out">
                             {!isFormSubmitted ? 'Registrar' : <LoadingButtons />}
                         </button>
                     </div>

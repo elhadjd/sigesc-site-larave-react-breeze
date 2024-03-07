@@ -30,7 +30,7 @@ export default function ResetPassword(props:{auth:{user:User},token:string, emai
     <UserLoggedProvider>
         <FormStateProvider>
             <HeaderComponent auth={props.auth} local={props.local}/>
-            <div className="min-h-screen mt-20 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+            <div className="min-h-screen mt-16 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
                 <div>
                     <Link href={`/${props.local}`}>
                         <img src="https://geral.sisgesc.net/favicon.ico" className='w-20 h-20 rounded-full' alt="SIGESC FAVICON" />

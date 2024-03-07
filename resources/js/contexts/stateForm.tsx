@@ -4,7 +4,7 @@ interface FormState{
     setIsFormSubmitted: (value: boolean)=>void
 }
 
-const FormStateContext = createContext<FormState |undefined>()
+const FormStateContext = createContext<FormState |undefined>(undefined)
 
 export const useFormState = ()=>{
     const context = useContext(FormStateContext)
