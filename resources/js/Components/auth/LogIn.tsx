@@ -11,12 +11,12 @@ import { loginServices } from '@/services/login';
 import { useFormState } from '@/contexts/stateForm';
 import { SiAuth0 } from 'react-icons/si';
 import { ToastContainer } from 'react-toastify';
-// ... Outras importações
+import { useTranslation } from 'react-i18next';
 
 export const Login = ({ local }:{local:string}) => {
     const { formData, handelSubmitForm, handleCHangeInput} = loginServices(local);
     const {isFormSubmitted} = useFormState()
-
+    const {t} = useTranslation()
     return (
 
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-6 py-8">
@@ -71,16 +71,16 @@ export const Login = ({ local }:{local:string}) => {
                 </form>
                 <div className="mt-6 text-center">
                     <div className="flex justify-center items-center space-x-2">
-                        <span className="text-gray-700 text-sm">Não tem uma conta?</span>
+                        <span className="text-gray-700 text-sm">{t('words.notAccount')}</span>
                         <Link href='/auth/register' className="text-blue-600 hover:text-blue-800 text-sm font-semibold">
-                        Registre-se.
+                        {t('words.registerNow')}
                         </Link>
                     </div>
                     <Link
                         href={route('password.request')}
                         className="mt-4 inline-block text-sm text-blue-600 hover:text-blue-800 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md"
                     >
-                        Esqueceu sua senha?
+                        {t('words.forgetPassword')}
                     </Link>
                 </div>
 

@@ -8,11 +8,6 @@ import FooterComponent from '@/Components/home/Footer';
 import { User } from '@/types';
 export default function dashboard(props:{local: string,auth:{user:User}}) {
 
-window.Echo.private(`User.${props.auth?.user?.id}`)
-.listen('.user.created', (e:any) => {
-    console.log(e);
-});
-
 useEffect(()=>{
     const url = new URL(window.location.href);
     const searchParams = url.searchParams;
@@ -22,6 +17,10 @@ useEffect(()=>{
         localStorage.setItem('chatUser',"support")
     }
 
+    window.Echo.private(`User.${props.auth?.user?.id}`)
+    .listen('.user.created', (e:any) => {
+        console.log(e);
+    });
 },[])
 
   return (

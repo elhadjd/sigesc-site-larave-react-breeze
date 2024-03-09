@@ -5,10 +5,11 @@ import { Link } from '@inertiajs/react';
 import { useLoggedUser } from '@/contexts/loggedUser';
 import { UserServices } from './services';
 import { User } from '@/types';
+import { useTranslation } from 'react-i18next';
+import { BiCheck } from 'react-icons/bi';
 
 export default function ProfileComponent({props,openForEdit}:{props:{auth: {user:User},local:string},openForEdit:VoidFunction}) {
     const { user, setUser } = useLoggedUser();
-    const { verifyUserEmail } = UserServices(props.local);
 
     useEffect(() => {
         setUser({ ...props.auth.user });
@@ -19,6 +20,7 @@ export default function ProfileComponent({props,openForEdit}:{props:{auth: {user
         { name: 'Controle Financeiro', description: 'Simplifique a emissão de faturas.', icon: AiOutlineCheckCircle },
         { name: 'Gestão de Compras', description: 'Otimize o seu processo de compra.', icon: AiOutlineCheckCircle },
     ];
+    const {t} = useTranslation()
 
     return (
         <motion.div className="min-h-screen bg-gray-100 mt-8 p-6 flex flex-col items-center justify-center"
@@ -28,12 +30,15 @@ export default function ProfileComponent({props,openForEdit}:{props:{auth: {user
         >
             <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg overflow-hidden p-5">
                 <div className="md:flex">
-                    <div className="md:w-1/3 p-4 flex items-center justify-center">
-                        <img src={props.auth.user.user_profile.image} alt="Profile" className="rounded-full border-2 border-gray-300 shadow-sm"/>
+                    <div className="md:w-1/2 p-4 flex items-center justify-center">
+                        <img src={props.auth.user.user_profile.image} alt="Profile" className="rounded-full w-40 h-40 border-2 border-gray-300 shadow-sm"/>
                     </div>
                     <div className="md:w-2/3 p-4">
                         <h2 className="text-xl md:text-2xl font-bold mb-2">{user?.name}</h2>
-                        <p className="text-gray-600 mb-4">{user?.email}</p>
+                        <p className="text-gray-600 mb-4">
+                            {user?.email}
+                            { props.auth.user?.email_verified_at == null ? <button type='button'>{t('words.verify')}</button>:<BiCheck className='text-3xl text-green-500'/>}
+                        </p>
                         <div className="flex flex-wrap mb-4">
                             {services.map((service, index) => (
                                 <motion.div key={index} className="w-full md:w-1/2 p-2"
@@ -51,8 +56,8 @@ export default function ProfileComponent({props,openForEdit}:{props:{auth: {user
                             ))}
                         </div>
                         <div className="flex justify-between items-center">
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" onClick={openForEdit}>Editar Perfil</button>
-                            <Link href={route('password.update-request')} className="text-blue-500 hover:underline">Mudar senha</Link>
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" onClick={openForEdit}>{t('words.edit')}</button>
+                            <Link href={route('password.update-request')} className="text-blue-500 hover:underline">{t('words.resetPassword')}</Link>
                         </div>
                     </div>
                 </div>

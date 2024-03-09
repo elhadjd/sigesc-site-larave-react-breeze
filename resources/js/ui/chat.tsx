@@ -37,10 +37,9 @@ const ChatComponent = () => {
     useEffect(()=>{
         window.Echo.channel(`Chat.${sessionChat.current}`)
         .listen('.chat.conversation', (e:any) => {
-            console.log(e);
             setChat({...e.data})
         });
-    },[])
+    },[sessionChat.current])
 
     const toggleChat = async () => {
         if(!isOpen){

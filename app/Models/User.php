@@ -52,7 +52,7 @@ class User extends Authenticatable
 
 
      function userProfile() : HasOne {
-        return $this->hasOne(userProfile::class);
+        return $this->hasOne(UserProfile::class);
      }
 
      function costumerContact() : HasMany {

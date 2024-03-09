@@ -26,13 +26,17 @@ export const contactsServices = () => {
     account: false
   });
 
+  useEffect(()=>{
+    setButtonSubmitDisable(false)
+  },[data])
+
   const handelSubmitForm = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-    if(processing || !errors) {
+    if(processing || buttonSubmitDisable) {
         toast.info('Formulário enviado',{position: 'top-right'})
         return
     }
-    if(buttonSubmitDisable) return toast.info('Formulario enviado',{position: 'top-right'})
+
     post("/en/contact/sendMessage")
     setButtonSubmitDisable(true)
   };

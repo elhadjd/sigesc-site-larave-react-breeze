@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
             }else{
                 $request->authenticate();
                 $request->session()->regenerate();
-                return $this->RespondSuccess('success');
+                return $this->RespondSuccess(__('success'));
             }
         }
         return $this->RespondWarn('Usuario não encontado, se ainda não possuiu uma conta clica no botão de baixo para cria uma, ou inicia a sesão pelo provedores abaixo');

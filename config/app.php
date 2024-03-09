@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Sigesc site'),
+    'name' => env('APP_NAME', 'SIGESC-TECH'),
 
     /*
     |--------------------------------------------------------------------------

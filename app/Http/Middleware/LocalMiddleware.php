@@ -29,11 +29,12 @@ class LocalMiddleware
             $preferredLanguage = $request->getPreferredLanguage($supportedLanguages);
 
             $newUrl = "/{$preferredLanguage}/{$currentPath}";
+            $request->setLocale($preferredLanguage);
 
             return redirect($newUrl);
         }
 
-        $request->setLocale($firstPart);
+        app()->setLocale($firstPart);
         return $next($request);
     }
 }

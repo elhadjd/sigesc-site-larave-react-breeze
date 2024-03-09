@@ -6,6 +6,7 @@ import { Link } from '@inertiajs/react';
 import { useLoggedUser } from '@/contexts/loggedUser';
 import { TbNoCreativeCommons } from 'react-icons/tb';
 import { FaRegNewspaper } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 export const HeaderComponent = ({ auth, local }) => {
     const { user, setUser } = useLoggedUser();
@@ -14,7 +15,7 @@ export const HeaderComponent = ({ auth, local }) => {
     useEffect(() => {
         setUser({ ...auth?.user });
     }, [auth, setUser]);
-
+    const {t} = useTranslation()
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     return (
@@ -30,22 +31,22 @@ export const HeaderComponent = ({ auth, local }) => {
                          <span className="text-xl lg:text-3xl font-bold text-[--buttonsColor]">
                             <span className='text-[--app_color]'>S</span>IGESC
                          </span>
-                         <span className="text-sm text-gray-500 hidden lg:block">Solução para a sua empresa</span>
+                         <span className="text-sm text-gray-500 hidden lg:block">{t('slogan')}</span>
                      </div>
                  </Link>
 
                  <nav className="hidden md:flex items-center space-x-4">
                      <Link href={route('shop',{page: ''})} className="flex items-center space-x-1 text-gray-600 hover:text-[--buttonsColor]">
-                         <BsShop className="text-lg" /><span>Loja</span>
+                         <BsShop className="text-lg capitalize" /><span>{t('words.shop')}</span>
                      </Link>
                      <Link href="/clients/depoiments" className="flex items-center space-x-1 text-gray-600 hover:text-[--buttonsColor]">
-                         <BsPerson className="text-lg" /><span>Clientes felizes</span>
+                         <BsPerson className="text-lg" /><span>{t('words.happyClients')}</span>
                      </Link>
                      <Link href="/prices" className="flex items-center space-x-1 text-gray-600 hover:text-[--buttonsColor]">
-                         <BsTag className="text-lg" /><span>Preços</span>
+                         <BsTag className="text-lg" /><span>{t('words.price')}</span>
                      </Link>
                      <Link href="/payments" className="flex items-center space-x-1 text-gray-600 hover:text-[--buttonsColor]">
-                         <BsCash className="text-lg" /><span>Pagamento</span>
+                         <BsCash className="text-lg" /><span>{t('words.payment')}</span>
                      </Link>
                      <Link href="/contact" className="flex items-center space-x-1 text-gray-600 hover:text-[--buttonsColor]">
                          <BsQuestionCircle className="text-lg" /><span>Suporte</span>
@@ -57,14 +58,17 @@ export const HeaderComponent = ({ auth, local }) => {
 
                  <div className="flex items-center space-x-4">
                      {user?.id ? (
-                        <Link href="/profile" className="flex items-center space-x-3 text-gray-600 hover:text-[--buttonsColor]">
-                            <img src={user.user_profile.image} alt="Profile" className="w-8 h-8 rounded-full" />
-                            <span className="truncate">{user.name || user.user_profile.surname}</span>
+                        <Link href="/profile" className="flex items-center space-x-3 text-gray-600 ">
+                            <span className='flex items-center space-x-2 hover:text-[--buttonsColor]'>
+                                <img src={user.user_profile.image} alt="Profile" className="w-8 h-8 rounded-full" />
+                                <span className="truncate">{user.name || user.user_profile.surname}</span>
+                            </span>
+
                             <Link href='/authenticate/logout' className='hover:text-red-800'>Logout</Link>
                         </Link>
                     ) : (
                         <Link href="/auth" className="px-4 py-2 bg-[--buttonsColor] text-white rounded hover:opacity-80 transition duration-150">
-                            Entrar
+                            {t('words.enter')}
                         </Link>
                     )}
                 </div>
@@ -87,18 +91,18 @@ export const HeaderComponent = ({ auth, local }) => {
                     <nav className="p-5 bg-white">
                         <Link href={route('shop',{page: ''})} className="flex flex-row space-x-2 items-center p-2 text-gray-600 hover:text-blue-600">
                             <BsShop className="text-lg" />
-                            <span>Loja</span>
+                            <span>{t('words.shop')}</span>
                         </Link>
                         <Link href="/clients/depoiments" className="flex flex-row space-x-2 items-center p-2 text-gray-600 hover:text-blue-600">
                             <BsPerson className="text-lg" />
-                            <span>Clientes felizes</span>
+                            <span>{t('words.happyClients')}</span>
                         </Link>
                         <Link href="/prices" className="flex flex-row space-x-2 items-center p-2 text-gray-600 hover:text-blue-600">
                             <BsTag className="text-lg" />
-                            <span>Preços</span>
+                            <span>{t('words.price')}</span>
                         </Link>
                         <Link href="/payments" className="flex flex-row space-x-2 items-center p-2 text-gray-600 hover:text-blue-600">
-                            <BsCash className="text-lg" /><span>Pagamento</span>
+                            <BsCash className="text-lg" /><span>{t('words.payment')}</span>
                         </Link>
                         <Link href="/contact" className="flex flex-row space-x-2 items-center p-2 text-gray-600 hover:text-blue-600">
                             <BsQuestionCircle className="text-lg" />

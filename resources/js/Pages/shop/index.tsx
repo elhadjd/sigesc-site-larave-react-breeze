@@ -6,6 +6,7 @@ import { FormStateProvider } from '@/contexts/stateForm';
 import { UserLoggedProvider } from '@/contexts/loggedUser';
 import { User } from '@/types';
 import FooterComponent from '@/Components/home/Footer';
+import { t } from 'i18next';
 
 const ProductCard = ({ product }:{product: any}) => {
   return (
@@ -21,8 +22,8 @@ const ProductCard = ({ product }:{product: any}) => {
           <p className="text-gray-600">{product.description}</p>
           <div className="flex justify-between items-center mt-4">
             <span className="text-xl font-bold">{product.price}</span>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-              Comprar
+            <button type='submit' className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+              {t('words.buy')}
             </button>
           </div>
         </div>

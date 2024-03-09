@@ -2,13 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ChatEvent;
-use App\Events\emailVerifiedEvent;
-use App\Events\NewUserNotification;
-use App\Events\UserEvent;
-use App\Events\welcomeUserEvent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class DashboardController extends Controller

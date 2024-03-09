@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\profile;
 
-use App\classes\UploadImages;
+use App\classes\uploadImages;
 use App\Events\NewUserNotification;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserProfile;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+
 
 class UserProfileController extends Controller
 {
@@ -67,7 +66,7 @@ class UserProfileController extends Controller
         $imageName = null;
         if($user->email != $request->email) return $this->RespondError('Atenção não podes modificar o email neste formulário');
         if($request->user_profile['image'] !== $user->userProfile()->first()->image){
-            $upload = new UploadImages();
+            $upload = new uploadImages();
             $imageName = $upload->Upload("users/images/$user->id",$request->user_profile['image']);
         }
 

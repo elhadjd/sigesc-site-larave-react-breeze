@@ -5,6 +5,7 @@ import { FormStateProvider } from '@/contexts/stateForm';
 import { UserLoggedProvider } from '@/contexts/loggedUser';
 import { User } from '@/types';
 import FooterComponent from '@/Components/home/Footer';
+import { useTranslation } from 'react-i18next';
 
 const SuccessStory = ({ story }:{story:any}) => {
 
@@ -40,74 +41,65 @@ const SuccessStory = ({ story }:{story:any}) => {
   );
 };
 
-
-
-const successStories = [
-    {
-        name: "Alcides joao alfredo",
-        position: "Diretora de Operações",
-        company: "Tech Innovations",
-        image: "/clients/alcides.jpg",
-        testimonial: "O SIGESC revolucionou a maneira como gerenciamos nossas operações diárias, trazendo eficiência e clareza para nosso trabalho."
-    },
-    {
-        name: "Ali Sanoh",
-        position: "CEO",
-        company: "StartUp XYZ",
-        image: "/clients/ali.jpg",
-        testimonial: "Graças ao SIGESC, conseguimos escalar nosso negócio mais rapidamente e com mais confiança."
-    },
-    {
-        name: "Kalil koulibaly",
-        position: "Gerente de TI",
-        company: "Soluções Digitais",
-        image: "/clients/kalil.jpg",
-        testimonial: "O SIGESC facilitou nossa transição para operações digitais, melhorando significativamente nossa produtividade."
-    },
-    {
-        name: "Mamoudou koulibaly",
-        position: "Proprietário",
-        company: "Martins Comércio",
-        image: "/clients/mamoudou.jpg",
-        testimonial: "Com o SIGESC, obtivemos uma visão clara do nosso estoque e vendas, otimizando nossos processos comerciais."
-    },
-    {
-        name: "Pathe diallo",
-        position: "Diretora Financeira",
-        company: "Fernandes Finanças",
-        image: "/clients/pathe.jpg",
-        testimonial: "O módulo de faturamento do SIGESC transformou nossa gestão financeira, tornando tudo mais rápido e simples."
-    },
-    {
-        name: "Pedro Álvares",
-        position: "Consultor de Vendas",
-        company: "Álvares e Associados",
-        image: "/path/to/pedro-alvares-image.jpg",
-        testimonial: "O SIGESC nos ajudou a entender melhor nossos clientes e aprimorar nosso processo de vendas."
-    },
-    {
-        name: "Soulaymane Diallo",
-        position: "Especialista em Logística",
-        company: "LogisTech",
-        image: "/clients/soulaymane.jpg",
-        testimonial: "A funcionalidade de gerenciamento de compras do SIGESC simplificou nossa cadeia de suprimentos."
-    },
-    {
-        name: "Henrique Dias",
-        position: "CEO",
-        company: "Dias Innovations",
-        image: "/path/to/henrique-dias-image.jpg",
-        testimonial: "O SIGESC nos proporcionou a inovação necessária para manter nossa empresa à frente no mercado."
-    },
-];
-
 export default function SuccessStoriesPage(props:{auth:{user: User},local: string}) {
+    const {t} = useTranslation()
+    const successStories = [
+        {
+            name: "Alcides joao alfredo",
+            company: "Tech Innovations",
+            image: "/clients/alcides.jpg",
+            testimonial: t('cards.happyClients.0')
+        },
+        {
+            name: "Ali Sanoh",
+            company: "StartUp XYZ",
+            image: "/clients/ali.jpg",
+            testimonial: t('cards.happyClients.1')
+        },
+        {
+            name: "Kalil koulibaly",
+            company: "Soluções Digitais",
+            image: "/clients/kalil.jpg",
+            testimonial: t('cards.happyClients.2')
+        },
+        {
+            name: "Mamoudou koulibaly",
+            company: "Martins Comércio",
+            image: "/clients/mamoudou.jpg",
+            testimonial: t('cards.happyClients.3')
+        },
+        {
+            name: "Pathe diallo",
+            company: "Fernandes Finanças",
+            image: "/clients/pathe.jpg",
+            testimonial: t('cards.happyClients.4')
+        },
+        {
+            name: "Pedro Álvares",
+            company: "Álvares e Associados",
+            image: "/path/to/pedro-alvares-image.jpg",
+            testimonial: t('cards.happyClients.5')
+        },
+        {
+            name: "Soulaymane Diallo",
+            company: "LogisTech",
+            image: "/clients/soulaymane.jpg",
+            testimonial: t('cards.happyClients.6')
+        },
+        {
+            name: "Henrique Dias",
+            company: "Dias Innovations",
+            image: "/path/to/henrique-dias-image.jpg",
+            testimonial: t('cards.happyClients.7')
+        },
+    ];
+
   return (
     <UserLoggedProvider>
         <FormStateProvider>
             <HeaderComponent auth={props.auth} local={props.local}/>
             <div className="container mt-20 mx-auto px-4 py-8">
-                <h1 className="text-3xl font-bold text-center mb-8">Casos de Sucesso</h1>
+                <h1 className="text-3xl font-bold text-center mb-8">{t('cards.happyClients.title')}</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {successStories.map((story, index) => (
                     <SuccessStory key={index} story={story} />
