@@ -10,6 +10,7 @@ import BecomePartnerSection from './PartnerSection'
 import { motion } from 'framer-motion';
 import { User } from '@/types'
 import Apps from './apps'
+import Team from './team'
 
 export interface textPreviewTs{
     content: string|null|undefined,
@@ -78,6 +79,7 @@ export const Demonstration = ({auth}:{auth:{user:User}}) => {
         <div className={style.why}>
           <Why actionPreviewText={ handlerPreviewText }/>
         </div>
+        <Team/>
         <BecomePartnerSection/>
         <div className={style.contact}>
            <Contacts auth={auth}/>

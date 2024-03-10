@@ -4,6 +4,7 @@ const resources = {
         translation: {
             slogan: 'the solution for your company',
             words: {
+                forHelp: 'for more information',
                 partner: 'partner',
                 forgetPassword: 'Forgot your password?,',
                 request:'Request',
@@ -204,19 +205,97 @@ const resources = {
                     desc: 'Enhance your business with our integrated commercial management software.',
                     pdv:{
                         name: 'PDV',
-                        desc: 'Point of sale (POS) payments Sigesc'
+                        desc: 'Point of sale (POS) payments Sigesc',
+                        page: {
+                            introText: "Simplify your sales operations with our intuitive and powerful solution.",
+                            conclusion: "SIGESC's Point of Sale (POS) module is designed to make sales transactions fast and efficient. With a user-friendly interface and robust features, it adapts perfectly to different types of businesses, from small stores to large retailers. ",
+                            features:{
+                                0:"Fast sales processing",
+                                1:"Real-time inventory management",
+                                2:"Integration with various payment methods",
+                                3:"Detailed reports and sales analysis",
+                                4:"Easy integration with other SIGESC modules"
+                            },
+                            p:"Using SIGESC's Point of Sale module, you can increase the efficiency of your operations, improve the customer experience and boost your sales. Experience digital transformation at the point of sale and take your business to the next level."
+                        }
                     },
                     invoicing: {
                         name: 'invoicing',
-                        desc: 'Sigesc billing module'
+                        desc: 'Sigesc billing module',
+                        page: {
+                            introText: "With the SIGESC Billing module, companies of all sizes can simplify billing management, reducing errors and saving time. Our solution was designed to adapt to the specific needs of your business, offering customization and flexibility.",
+                            conclusion: "Automate your invoicing process with efficiency, accuracy and compliance.",
+                            features:{
+                                0:"Quick issuance of invoices and receipts",
+                                1:"Accounts receivable and payable management",
+                                2:"Detailed financial reports",
+                                3:"Compatibility with multiple payment methods",
+                                4:"Easy integration with other SIGESC modules"
+                            },
+                            p:"Choosing the SIGESC Billing module means choosing a solution that supports the growth of your business, ensures tax compliance and offers a clear view of your financial health."
+                        }
                     },
                     purchase: {
                         name: 'purchase management',
-                        desc: 'purchasing management module'
+                        desc: 'purchasing management module',
+                        page: {
+                            introText: `With SIGESC's Purchasing Management module, companies of all sizes can optimize their purchasing operations, improving efficiency and reducing costs. This advanced solution was carefully developed to meet the specific demands of different types of businesses, offering complete customization and seamless integration with other SIGESC modules.`,
+                            conclusion: `Choosing the SIGESC Purchasing Management module means investing in a tool that not only simplifies the purchasing process, but also provides valuable data to make strategic decisions, promoting the sustainable growth of your business.`,
+                            features:{
+                                0:"Purchase order automation",
+                                1:"Supplier and contract management",
+                                2:"Cost analysis and supplier performance",
+                                3:"Inventory control and receipt of products",
+                                4:"In-depth reporting and purchasing insights"
+                            },
+                            data: {
+                                0:{
+                                    title: "Order Automation",
+                                    desc: "Simplify ordering with complete automation from order to payment.",
+                                },
+                                1:{
+                                    title: "Supplier Management",
+                                    desc: "Manage your suppliers and contracts on a single integrated platform.",
+                                },
+                                2:{
+                                    title: "Cost Analysis",
+                                    desc: "Get insights into supplier costs and performance for strategic decisions."
+                                },
+                                3:{
+                                    title: "Inventory Control",
+                                    desc: "Keep your inventory up to date with accurate tracking tools."
+                                },
+                                4:{
+                                    title: "Product Receipt",
+                                    desc: "Ensure the correct quality and quantity of products received."
+                                },
+                            }
+                        }
                     },
                     employees: {
                         name: 'employees',
-                        desc: 'Sigesc employee module'
+                        desc: 'Sigesc employee module',
+                        page: {
+                            introText: "SIGESC's Employee Management module allows companies to efficiently manage all aspects related to their employees, from recruitment to professional development, including performance evaluation and benefits administration.",
+                            conclusion: "Adopting the SIGESC Employee Management module means investing in your greatest asset: people. It facilitates human resources management, promotes a more productive work environment and helps the growth of your team and your company.",
+                            features:{
+                                0:"Detailed record of employees with professional history",
+                                1:"Payroll and benefits management",
+                                2:"Performance reviews and feedback tools",
+                                3:"Career planning and professional development",
+                                4:"Control of hours worked and shift management"
+                            },
+                            data: {
+                                0:{
+                                    title: "Detailed Registration",
+                                    desc: "Manage all your employees' details in one place."
+                                },
+                                1:{
+                                    title: "Performance Reviews",
+                                    desc: "Integrated tools to evaluate and enhance team performance."
+                                },
+                            }
+                        }
                     },
                     stock: {
                         name: 'stock',
@@ -302,6 +381,10 @@ const resources = {
                 prices:{
                     title: 'Affordable Solutions for Success: Discover the Prices of Our Commercial Integrated Management Software.',
                     desc: "Discover personalized packages that suit your business. Our integrated commercial management software offers features such as advanced POS, financial control, purchasing and inventory management. Maximize operational efficiency while keeping costs under control. Choose the right solution to boost your company's growth. Explore our competitive prices and take your business to the next level with innovation, security and efficiency.",
+                },
+                newsletter: {
+                    title:"Subscribe to our Newsletter",
+                    desc: "Receive the latest news, discounts and updates directly to your email.",
                 }
             }
         }
@@ -456,6 +539,7 @@ const resources = {
                 box: 'caixa',
                 resetPassword: 'redefinir a senha',
                 lessEqual: 'menor egual',
+                forHelp: 'para mais informação',
                 a: 'um',
                 or: 'ou',
                 type: 'tipo',
@@ -506,19 +590,97 @@ const resources = {
                     desc: 'Potencialize seu negócio com nosso software de gestão integrado comercial.',
                     pdv:{
                         nome: 'POV',
-                        desc: 'Pagamentos no ponto de venda (POS) Sigesc'
+                        desc: 'Pagamentos no ponto de venda (POS) Sigesc',
+                        page: {
+                            introText: "Simplifique suas operações de venda com nossa solução intuitiva e poderosa.",
+                            conclusion: "O módulo Ponto de Venda (POS) do SIGESC é projetado para tornar as transações de venda rápidas e eficientes. Com uma interface amigável e recursos robustos, ele se adapta perfeitamente a diferentes tipos de negócios, desde pequenas lojas a grandes varejistas.",
+                            features:{
+                                0:"Processamento rápido de vendas",
+                                1:"Gestão de inventário em tempo real",
+                                2:"Integração com métodos de pagamento variados",
+                                3:"Relatórios detalhados e análises de vendas",
+                                4:"Integração fácil com outros módulos SIGESC"
+                            },
+                            p:"Utilizando o módulo Ponto de Venda do SIGESC, você pode aumentar a eficiência de suas operações, melhorar a experiência do cliente e impulsionar suas vendas. Experimente a transformação digital no ponto de venda e leve seu negócio ao próximo nível."
+                        }
                     },
                     invoicing: {
                         nome: 'faturamento',
-                        desc: 'Módulo de faturamento Sigesc'
+                        desc: 'Módulo de faturamento Sigesc',
+                        page: {
+                            introText: "Com o módulo de Faturamento do SIGESC, empresas de todos os tamanhos podem simplificar a gestão de faturamento, reduzindo erros e economizando tempo. Nossa solução foi projetada para se adaptar às necessidades específicas do seu negócio, oferecendo personalização e flexibilidade.",
+                            conclusion: "Automatize seu processo de faturamento com eficiência, precisão e conformidade.",
+                            features:{
+                                0:"Emissão rápida de faturas e recibos",
+                                1:"Gestão de contas a receber e a pagar",
+                                2:"Relatórios financeiros detalhados",
+                                3:"Compatibilidade com múltiplos métodos de pagamento",
+                                4:"Integração fácil com outros módulos SIGESC"
+                            },
+                            p:"Optar pelo módulo de Faturamento do SIGESC significa escolher uma solução que apoia o crescimento do seu negócio, assegura a conformidade fiscal e oferece uma visão clara da sua saúde financeira."
+                        }
                     },
                     purchase: {
                         nome: 'gerenciamento de compras',
-                        desc: 'módulo de gestão de compras'
+                        desc: 'módulo de gestão de compras',
+                        page: {
+                            introText: `Com o módulo de Gerenciamento de Compras do SIGESC, empresas de todos os tamanhos podem otimizar suas operações de compra, melhorando a eficiência e reduzindo custos. Esta solução avançada foi cuidadosamente desenvolvida para atender às demandas específicas de diferentes tipos de negócios, oferecendo uma personalização completa e uma integração perfeita com outros módulos do SIGESC.`,
+                            conclusion: `Escolher o módulo de Gerenciamento de Compras do SIGESC significa investir em uma ferramenta que não apenas simplifica o processo de compras, mas também fornece dados valiosos para tomar decisões estratégicas, promovendo o crescimento sustentável do seu negócio.`,
+                            features:{
+                                0:"Automatização de pedidos de compra",
+                                1:"Gestão de fornecedores e contratos",
+                                2:"Análise de custos e desempenho de fornecedores",
+                                3:"Controle de inventário e recebimento de produtos",
+                                4:"Relatórios aprofundados e insights de compra"
+                            },
+                            data: {
+                                0:{
+                                    title: "Automatização de Pedidos",
+                                    desc: "Simplifique os pedidos com automação completa, do pedido ao pagamento.",
+                                },
+                                1:{
+                                    title: "Gestão de Fornecedores",
+                                    desc: "Gerencie seus fornecedores e contratos em uma única plataforma integrada.",
+                                },
+                                2:{
+                                    title: "Análise de Custos",
+                                    desc: "Obtenha insights sobre custos e desempenho dos fornecedores para decisões estratégicas."
+                                },
+                                3:{
+                                    title: "Controle de Inventário",
+                                    desc: "Mantenha seu inventário atualizado com ferramentas de controle precisas."
+                                },
+                                4:{
+                                    title: "Recebimento de Produtos",
+                                    desc: "Assegure a qualidade e a quantidade correta dos produtos recebidos."
+                                },
+                            }
+                        }
                     },
                     employees: {
                         nome: 'funcionários',
-                        desc: 'Módulo de funcionário Sigesc'
+                        desc: 'Módulo de funcionário Sigesc',
+                        page: {
+                            introText: 'O módulo de Gerenciamento de Funcionários do SIGESC permite às empresas gerenciar eficientemente todos os aspectos relacionados aos seus colaboradores, desde o recrutamento até o desenvolvimento profissional, passando pela avaliação de desempenho e administração de benefícios.',
+                            conclusion: "Adotar o módulo de Gerenciamento de Funcionários do SIGESC significa investir no seu maior ativo: as pessoas. Facilita a administração de recursos humanos, promove um ambiente de trabalho mais produtivo e ajuda no crescimento da sua equipe e da sua empresa.",
+                            features:{
+                                0:"Cadastro detalhado de funcionários com histórico profissional",
+                                1:"Gerenciamento de folha de pagamento e benefícios",
+                                2:"Avaliações de desempenho e ferramentas de feedback",
+                                3:"Planejamento de carreira e desenvolvimento profissional",
+                                4:"Controle de horas trabalhadas e gestão de turnos"
+                            },
+                            data: {
+                                0:{
+                                    title: "Cadastro Detalhado",
+                                    desc: "Administre todos os detalhes dos seus colaboradores em um único lugar."
+                                },
+                                1:{
+                                    title: "Avaliações de Desempenho",
+                                    desc: "Ferramentas integradas para avaliar e potencializar o desempenho da equipe."
+                                },
+                            }
+                        }
                     },
                     stock: {
                         nome: 'estoque',
@@ -603,6 +765,10 @@ const resources = {
                 prices:{
                     title: 'Soluções Acessíveis para o Sucesso: Conheça os Preços do Nosso Software de Gestão Integrado comercial.',
                     desc: 'Descubra pacotes personalizados que se adequam ao seu negócio. Nosso software de gestão integrado comercial oferece recursos como PDV avançado, controle financeiro, gestão de compras e inventário. Maximize a eficiência operacional enquanto mantém os custos sob controle. Escolha a solução certa para impulsionar o crescimento da sua empresa. Explore nossos preços competitivos e leve seu negócio ao próximo nível com inovação, segurança e eficiência.',
+                },
+                newsletter: {
+                    title:"Inscreva-se na nossa Newsletter",
+                    desc: "Receba as últimas notícias, disconto e atualizações diretamente no seu e-mail.",
                 }
             }
         }
@@ -611,6 +777,7 @@ const resources = {
         translation: {
             slogan: 'la solution pour votre entreprise',
             words: {
+                forHelp: "pour plus d'informations",
                 partner: 'partenaire',
                 account:'compte',
                 forgetPassword: 'mot de passe oublié',
@@ -806,19 +973,97 @@ const resources = {
                     desc: 'Valorisez votre entreprise avec notre logiciel de gestion commerciale intégré.',
                     pdv:{
                         name: 'PDV',
-                        desc: 'Paiements au point de vente (POS) Sigesc'
+                        desc: 'Paiements au point de vente (POS) Sigesc',
+                        page:{
+                            introText: "Simplifiez vos opérations commerciales avec notre solution intuitive et puissante.",
+                            conclusion : "Le module Point de Vente (POS) de SIGESC est conçu pour rendre les transactions de vente rapides et efficaces. Avec une interface conviviale et des fonctionnalités robustes, il s'adapte parfaitement aux différents types d'entreprises, des petits magasins aux grands détaillants. ",
+                            features:{
+                                0:"Traitement rapide des ventes",
+                                1:"Gestion des stocks en temps réel",
+                                2:"Intégration avec différents modes de paiement",
+                                3:"Rapports détaillés et analyse des ventes",
+                                4:"Intégration facile avec d'autres modules SIGESC"
+                            },
+                            p:"Grâce au module Point de Vente de SIGESC, vous pouvez augmenter l'efficacité de vos opérations, améliorer l'expérience client et booster vos ventes. Vivez la transformation numérique au point de vente et faites passer votre entreprise au niveau supérieur."
+                        }
                     },
                     invoicing: {
                         name: 'facturation',
-                        desc: 'Module de facturation Sigesc'
+                        desc: 'Module de facturation Sigesc',
+                        page:{
+                            introText:"Avec le module SIGESC Billing, les entreprises de toutes tailles peuvent simplifier la gestion de la facturation, réduisant les erreurs et gagnant du temps. Notre solution a été conçue pour s'adapter aux besoins spécifiques de votre entreprise, offrant personnalisation et flexibilité.",
+                            conclusion: "Automatisez votre processus de facturation avec efficacité, précision et conformité.",
+                            features:{
+                                0:"Émission rapide des factures et des reçus",
+                                1:"Gestion des comptes clients et fournisseurs",
+                                2:"Rapports financiers détaillés",
+                                3:"Compatibilité avec plusieurs modes de paiement",
+                                4:"Intégration facile avec d'autres modules SIGESC"
+                            },
+                            p: "Choisir le module Facturation SIGESC, c'est choisir une solution qui accompagne la croissance de votre entreprise, garantit la conformité fiscale et offre une vision claire de votre santé financière."
+                        }
                     },
                     purchase: {
                         name: 'gestion des achats',
-                        desc: 'module de gestion des achats'
+                        desc: 'module de gestion des achats',
+                        page:{
+                            introText : "Avec le module de gestion des achats de SIGESC, les entreprises de toutes tailles peuvent optimiser leurs opérations d'achat, améliorant ainsi leur efficacité et réduisant leurs coûts. Cette solution avancée a été soigneusement développée pour répondre aux demandes spécifiques de différents types d'entreprises, offrant une personnalisation complète et une intégration transparente avec d'autres modules SIGESC.",
+                            conclusion : "Choisir le module SIGESC Purchasing Management, c'est investir dans un outil qui non seulement simplifie le processus d'achat, mais fournit également des données précieuses pour prendre des décisions stratégiques, favorisant la croissance durable de votre entreprise.",
+                            features:{
+                                0:"Automatisation des bons de commande",
+                                1:"Gestion des fournisseurs et des contrats",
+                                2:"Analyse des coûts et performance des fournisseurs",
+                                3:"Contrôle des stocks et réception des produits ",
+                                4:"Rapports approfondis et informations sur les achats"
+                            },
+                            data: {
+                                0:{
+                                    titre: "Automatisation des commandes",
+                                    desc: "Simplifiez la commande avec une automatisation complète de la commande au paiement.",
+                                },
+                                1:{
+                                    titre: "Gestion des fournisseurs",
+                                    desc: "Gérez vos fournisseurs et vos contrats sur une seule plateforme intégrée.",
+                                },
+                                2:{
+                                    titre: "Analyse des coûts",
+                                    desc: "Obtenez des informations sur les coûts et les performances des fournisseurs pour prendre des décisions stratégiques."
+                                },
+                                3:{
+                                    titre: "Contrôle des stocks",
+                                    desc: "Gardez votre inventaire à jour grâce à des outils de suivi précis."
+                                },
+                                4:{
+                                    titre: "Réception du produit",
+                                    desc: "Assurer la qualité et la quantité correctes des produits reçus."
+                                },
+                            }
+                        }
                     },
                     employees: {
                         name: 'employés',
-                        desc: 'module employé Sigesc'
+                        desc: 'module employé Sigesc',
+                        page:{
+                            introText: "Le module de gestion des employés du SIGESC permet aux entreprises de gérer efficacement tous les aspects liés à leurs employés, du recrutement au développement professionnel, en passant par l'évaluation des performances et l'administration des avantages sociaux.",
+                            conclusion : "Adopter le module SIGESC Employee Management, c'est investir dans votre plus grand atout : les personnes. Il facilite la gestion des ressources humaines, favorise un environnement de travail plus productif et contribue à la croissance de votre équipe et de votre entreprise.",
+                            caractéristiques:{
+                                0:"Fichier détaillé des salariés ayant un historique professionnel",
+                                1:"Gestion de la paie et des avantages sociaux",
+                                2:"Évaluations des performances et outils de feedback",
+                                3:"Planification de carrière et développement professionnel ",
+                                4:"Contrôle des heures travaillées et gestion des équipes"
+                            },
+                            data: {
+                                0:{
+                                    titre: "Inscription détaillée",
+                                    desc: "Gérez toutes les informations de vos employés en un seul endroit."
+                                },
+                                1:{
+                                    titre: "Évaluations des performances",
+                                    desc: "Des outils intégrés pour évaluer et améliorer les performances de l'équipe."
+                                },
+                            }
+                        }
                     },
                     stock: {
                         name: 'stock',
@@ -883,7 +1128,7 @@ const resources = {
                     desc: "Rejoignez notre programme de partenariat et explorez de nouvelles opportunités de croissance. Bénéficiez de notre accompagnement dédié, de formations exclusives et d'un accès à des ressources qui boosteront votre réussite."
                 },
                 contact:{
-                    title : 'Contacter le SIGESC',
+                    title : 'Contacter SIGESC',
                     desc: "Si vous recherchez un logiciel de gestion commerciale qui transforme votre entreprise, SIGESC est la solution. Avec des fonctionnalités avancées et un support dédié, notre système a été créé pour répondre à vos besoins. Remplissez le formulaire ci-dessous ou appelez nos numéros de contact et découvrez comment nous pouvons vous aider à atteindre vos objectifs commerciaux."
                 },
                 footer: {
@@ -903,6 +1148,10 @@ const resources = {
                 prices:{
                     titre:'Des solutions abordables pour réussir: découvrez les prix de notre logiciel de gestion commerciale intégrée.',
                     desc: 'Découvrez des forfaits personnalisés adaptés à votre entreprise. Notre logiciel de gestion commerciale intégré offre des fonctionnalités telles que le point de vente avancé, le contrôle financier, la gestion des achats et des stocks. Maximisez l’efficacité opérationnelle tout en maîtrisant les coûts. Choisissez la bonne solution pour booster la croissance de votre entreprise. Découvrez nos prix compétitifs et faites passer votre entreprise au niveau supérieur avec innovation, sécurité et efficacité.',
+                },
+                newsletter:{
+                    title:"Abonnez-vous à notre Newsletter",
+                    desc: "Recevez les dernières nouvelles, réductions et mises à jour directement sur votre e-mail.",
                 }
             }
         }

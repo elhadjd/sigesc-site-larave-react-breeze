@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Policies\ResourcesController;
 use App\Http\Controllers\public\contactController;
 use App\Http\Controllers\public\paymentsController;
@@ -106,6 +107,11 @@ require __DIR__.'/auth.php';
 
         Route::controller(shopController::class)->group(function(){
             Route::get('shop/{page?}','index')->name('shop');
+        });
+
+        Route::controller(NewsletterController::class)->group(function(){
+            Route::post('/newsletter/new-email','register')->name('new-newsletter');
+            Route::get('/newsletter/unsigned/{newsletter}','destroy')->name('destroy-newsletter');
         });
     });
     Route::fallback(function(){

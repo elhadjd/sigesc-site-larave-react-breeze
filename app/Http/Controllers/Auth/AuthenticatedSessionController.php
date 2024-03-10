@@ -45,11 +45,11 @@ class AuthenticatedSessionController extends Controller
                 return $this->RespondSuccess(__('success'));
             }
         }
-        return $this->RespondWarn('Usuario não encontado, se ainda não possuiu uma conta clica no botão de baixo para cria uma, ou inicia a sesão pelo provedores abaixo');
+        return $this->RespondWarn(__('User not found'));
     }
 
-    public function authenticateWithSocial(Request $request,$local,$drive){
-        $drives = ['google', 'github', 'facebook'];
+    public function authenticateWithSocial(Request $request,$local,string $drive){
+        $drives = ['google', 'github'];
         cookie()->queue('provider',$drive);
         if(!in_array($drive,$drives)) redirect($request->getLocale()."/auth")->with('Tipo de authenticação não suportada');
         return Socialite::driver($drive)->redirect();

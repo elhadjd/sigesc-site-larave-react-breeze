@@ -1,4 +1,7 @@
 {
+    "Chat end":"La conversation s'est terminée avec succès !",
+    "Wellcome to chat live": "Salut, bienvenue sur le chat en direct, faites-nous savoir comment nous pouvons vous aider.",
+    "This email is already registered": "Cet e-mail est déjà enregistré",
     "The start date cannot be grater than the end date":"La date du début ne peut pas être supérieure a la date du fin",
     "The start date cannot be less than the current date":"La date du début ne peut pas être inférieure a la date du jour",
     "User not found": "Utilisateur non trouvé",

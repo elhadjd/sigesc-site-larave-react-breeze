@@ -6,6 +6,7 @@ import { HeaderComponent } from '../Components/home/Header';
 import { Demonstration } from '@/Components/home/Demonstration';
 import FooterComponent from '@/Components/home/Footer';
 import { User } from '@/types';
+import ModalNewsletter from '@/ui/newsletter';
 export default function dashboard(props:{local: string,auth:{user:User}}) {
 
 useEffect(()=>{
@@ -27,6 +28,7 @@ useEffect(()=>{
     <UserLoggedProvider>
       <div className={`${style.App} relative`}>
         <FormStateProvider>
+        <ModalNewsletter local={props.local}/>
             <HeaderComponent auth={props.auth} local={props.local}/>
                 <Demonstration auth={props.auth}/>
                 {/* <Progress/> */}

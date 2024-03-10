@@ -34,22 +34,7 @@ const ProductCard = ({ product }:{product: any}) => {
 
 
 const products = [
-    { id: 1, name: "Computador Gamer XYZ", description: "Alta performance para jogos", price: "R$ 5.000,00", image: "/images/computador-gamer.jpg", category: "Computadores" },
-    { id: 2, name: "Notebook Profissional ABC", description: "Ideal para trabalho e estudo", price: "R$ 3.200,00", image: "/images/notebook-profissional.jpg", category: "Notebooks" },
-    { id: 3, name: "Impressora LaserJet 123", description: "Impressões rápidas e de qualidade", price: "R$ 800,00", image: "/images/impressora-laser.jpg", category: "Impressoras" },
-    { id: 4, name: "Monitor UltraWide 49\"", description: "Expanda sua visão de trabalho", price: "R$ 2.200,00", image: "/images/monitor-ultrawide.jpg", category: "Monitores" },
-    { id: 5, name: "Teclado Mecânico RGB", description: "Precisão e conforto para gamers", price: "R$ 350,00", image: "/images/teclado-mecanico.jpg", category: "Acessórios" },
-    { id: 6, name: "Mouse Gamer XYZ", description: "Alta precisão e resposta rápida", price: "R$ 150,00", image: "/images/mouse-gamer.jpg", category: "Acessórios" },
-    { id: 7, name: "Headset 7.1 Canais", description: "Imersão total com áudio de alta qualidade", price: "R$ 420,00", image: "/images/headset.jpg", category: "Acessórios" },
-    { id: 8, name: "Cadeira Gamer Reclinável", description: "Conforto extremo para longas sessões", price: "R$ 1.200,00", image: "/images/cadeira-gamer.jpg", category: "Móveis" },
-    { id: 9, name: "Tablet XYZ 10\"", description: "Portabilidade e desempenho", price: "R$ 1.000,00", image: "/images/tablet.jpg", category: "Tablets" },
-    { id: 10, name: "Smartphone ABC Plus", description: "Tecnologia e inovação na palma da sua mão", price: "R$ 2.500,00", image: "/images/smartphone.jpg", category: "Smartphones" },
-    { id: 11, name: "SSD 1TB - Super Veloz", description: "Upgrade significativo de velocidade", price: "R$ 600,00", image: "/images/ssd.jpg", category: "Componentes" },
-    { id: 12, name: "HD Externo 2TB", description: "Amplie facilmente seu armazenamento", price: "R$ 450,00", image: "/images/hd-externo.jpg", category: "Armazenamento" },
-    { id: 13, name: "Webcam Full HD", description: "Imagem nítida para suas videoconferências", price: "R$ 320,00", image: "/images/webcam.jpg", category: "Acessórios" },
-    { id: 14, name: "Microfone Condensador", description: "Áudio profissional para gravações", price: "R$ 500,00", image: "/images/microfone.jpg", category: "Acessórios" },
-    { id: 15, name: "Roteador Wi-Fi 6", description: "Internet rápida e estável", price: "R$ 750,00", image: "/images/roteador.jpg", category: "Redes" },
-    { id: 16, name: "Pen Drive 128GB", description: "Compacto e com grande capacidade", price: "R$ 100,00", image: "/images/pen-drive.jpg", category: "Armazenamento" },
+    { id: 1, name: "Computador Gamer XYZ", description: "Alta performance para jogos", price: "$1.000,00", image: "/images/computador-gamer.jpg", category: "Computadores" },
 ];
 
 export default function StorePage(props:{auth:{user:User},local:string}) {

@@ -20,7 +20,7 @@ export default function FooterComponent() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-semibold mb-2">SIGESC TECH</h3>
-            <p className='text-white'>{t('cards.footer.title')}</p>
+            <p className='text-white'>{t('cards.footer.desc')}</p>
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-2">Socials</h4>

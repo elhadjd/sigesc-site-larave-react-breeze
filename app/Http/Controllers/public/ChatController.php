@@ -29,8 +29,9 @@ class ChatController extends Controller
             'user_id' => $userId,
             'session'=> $session,
         ]);
+
         $chat->conversations()->create([
-            'message'=>"Olá seja bem ao chat ao vivo, diga-nos em que posemos ser util.",
+            'message'=>__('Wellcome to chat live'),
             'user'=>'support'
         ]);
         cookie()->queue('chatSession',$session);
@@ -72,7 +73,7 @@ class ChatController extends Controller
             ]);
         }
 
-        return $this->RespondSuccess('Conversa encerrada com sucesso!');
+        return $this->RespondSuccess(__('Chat end'));
     }
 
     /**

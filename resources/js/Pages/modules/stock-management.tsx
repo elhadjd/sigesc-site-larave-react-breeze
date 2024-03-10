@@ -3,6 +3,7 @@ import {HeaderComponent} from '@/Components/home/Header';
 import { UserLoggedProvider } from '@/contexts/loggedUser';
 import { FormStateProvider } from '@/contexts/stateForm';
 import { User } from '@/types';
+import LinkHelp from '@/ui/link-help';
 import { Link } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +16,7 @@ function StockManagement(props:{auth:{user:User}, local:string}) {
     t('cards.modules.stock.page.features.1'),
     t('cards.modules.stock.page.features.2'),
     t('cards.modules.stock.page.features.3'),
-    t('cards.modules.stock.page.features.4'),
+    t('cards.modules.stock.page.features.4')
   ];
 
   const conclusion = t('cards.modules.stock.page.conclusion');
@@ -75,7 +76,6 @@ function StockManagement(props:{auth:{user:User}, local:string}) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 viewport={{ once: true }}
-
                 whileInView={{ opacity: 1 }}
                 className="mb-8"
                 >
@@ -86,7 +86,7 @@ function StockManagement(props:{auth:{user:User}, local:string}) {
           ))}
         </div>
         <div className="text-center px-4 mb-4">
-            <Link href={`/${props.local}/contact`} className="text-blue-600 hover:text-blue-800">Entre em contato</Link> para mais informações ou <a href="https://geral.sisgesc.net/gettingStarted" target='_blank' className="text-blue-600 hover:text-blue-800 font-semibold">{t('words.requestDemo')}</a>
+            <LinkHelp local={props.local}/>
         </div>
         <FooterComponent/>
       </FormStateProvider>

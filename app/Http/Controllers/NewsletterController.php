@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\welcomeNewsletter;
 use App\Models\newsletter;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -36,9 +37,22 @@ class NewsletterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    function register(Request $request) {
+        $request->validate([
+            'email'=>'required|string|lowercase|email|max:255|unique:'.newsletter::class,
+        ]);
+        if(!newsletter::where('email',$request->email)->first()){
+            $name = str_replace('@gmail.com','',$request->email);
+            $data = [
+                'name'=>$name,
+                'surname'=>$name,
+                'email'=>$request->email
+            ];
+            $create = newsletter::create($data);
+            Mail::to($request->email)->send(new welcomeNewsletter(array_merge($data,['id'=>$create->id])));
+            return redirect()->back()->with('status',__('Operation completed successfully'));
+        }
+
     }
 
     /**
@@ -71,5 +85,6 @@ class NewsletterController extends Controller
     public function destroy(newsletter $newsletter)
     {
         $newsletter->destroy($newsletter->id);
+        redirect()->intended(RouteServiceProvider::HOME);
     }
 }

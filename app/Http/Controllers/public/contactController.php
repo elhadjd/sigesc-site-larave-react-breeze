@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\public;
 
 use App\Events\contactFormEvent;
-use App\Events\UserEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\NewsletterController;
 use App\Mail\autoPassword;
-use App\Mail\ContactFormMail;
 use App\Mail\EmailVerify;
 use App\Models\costumerContact;
 use App\Models\User;
@@ -62,6 +60,7 @@ class contactController extends Controller
         });
 
         return redirect()->back()->with('message','E-mail enviado com sucesso!');
+        
     }
 
     function newUser($data) {

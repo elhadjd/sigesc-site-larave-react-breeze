@@ -26,13 +26,13 @@
                 <p>Obrigado por se inscrever na nossa newsletter. Estamos entusiasmados para compartilhar com você as últimas novidades e atualizações sobre o nosso software de gestão comercial, SIGESC TECH.</p>
                 <p>Seu email registrado conosco é: <strong>{{$email}}</strong></p>
                 <p>Para garantir que você não perca nenhuma atualização, confira nossas últimas notícias e mantenha-se informado sobre as novidades mais recentes do setor.</p>
-                <a href="https://sisgesc.net" class="button">Confira as Últimas Notícias</a>
+                <a href="https://sisgesc.net/blog" class="button">Confira as Últimas Notícias</a>
             </td>
         </tr>
         <tr>
             <td class="footer">
                 Você está recebendo este email porque se inscreveu na nossa newsletter. <br>
-                Se você deseja cancelar a subscrição, clique <a href="https://sisgesc.net">aqui</a>.
+                Se você deseja cancelar a subscrição, clique <a href={{url('/newsletter/unsigned/'.$id)}}>aqui</a>.
             </td>
         </tr>
     </table>

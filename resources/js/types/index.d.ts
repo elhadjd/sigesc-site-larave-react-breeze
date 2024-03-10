@@ -22,3 +22,16 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
         user: User;
     };
 };
+
+export interface postTs{
+    post_translate: postTranslate[]
+}
+
+interface postTranslate{
+    department: string,
+    title: string,
+    description: string,
+    path: string,
+    image: string,
+    post_id: number
+}

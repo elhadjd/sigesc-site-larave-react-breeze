@@ -5,32 +5,34 @@ import { UserLoggedProvider } from '@/contexts/loggedUser';
 import { FormStateProvider } from '@/contexts/stateForm';
 import { User } from '@/types';
 import { Link } from '@inertiajs/react';
+import LinkHelp from '@/ui/link-help';
+import { useTranslation } from 'react-i18next';
 function Invoicing(props:{auth:{user:User},local:string}) {
+    const {t} = useTranslation()
   return (
     <UserLoggedProvider>
         <FormStateProvider>
             <HeaderComponent auth={props.auth} local={props.local}/>
             <div className="max-w-4xl mt-20 mx-auto px-4 py-8">
-                <h1 className="text-3xl font-bold text-center mb-4">Módulo de Faturamento</h1>
-                <p className="text-center text-gray-600 mb-8">Automatize seu processo de faturamento com eficiência, precisão e conformidade.</p>
-
+                <h1 className="text-3xl font-bold text-center mb-4">{t('cards.modules.invoicing.desc')}</h1>
+                <p className="text-center text-gray-600 mb-8">{t('cards.modules.invoicing.page.conclusion')}</p>
                 <img src="/img/Sigesc Paineies proficionais.png" alt="Interface do Módulo de Faturamento SIGESC" className="w-full h-auto mb-8 shadow-lg" />
 
                 <div className="text-lg text-gray-700 space-y-4">
-                    <p>Com o módulo de Faturamento do SIGESC, empresas de todos os tamanhos podem simplificar a gestão de faturamento, reduzindo erros e economizando tempo. Nossa solução foi projetada para se adaptar às necessidades específicas do seu negócio, oferecendo personalização e flexibilidade.</p>
-                    <p>Características principais:</p>
+                    <p>{t('cards.modules.invoicing.page.introText')}</p>
+                    <p>Main features:</p>
                     <ul className="list-disc pl-5">
-                    <li>Emissão rápida de faturas e recibos</li>
-                    <li>Gestão de contas a receber e a pagar</li>
-                    <li>Relatórios financeiros detalhados</li>
-                    <li>Compatibilidade com múltiplos métodos de pagamento</li>
-                    <li>Integração fácil com outros módulos SIGESC</li>
+                        <li>{t('cards.modules.invoicing.page.features.0')}</li>
+                        <li>{t('cards.modules.invoicing.page.features.1')}</li>
+                        <li>{t('cards.modules.invoicing.page.features.2')}</li>
+                        <li>{t('cards.modules.invoicing.page.features.3')}</li>
+                        <li>{t('cards.modules.invoicing.page.features.4')}</li>
                     </ul>
-                    <p>Optar pelo módulo de Faturamento do SIGESC significa escolher uma solução que apoia o crescimento do seu negócio, assegura a conformidade fiscal e oferece uma visão clara da sua saúde financeira.</p>
+                    <p>{t('cards.modules.invoicing.page.p')}</p>
                 </div>
 
                 <div className="text-center mt-8">
-                <Link href={`/${props.local}/contact`} className="text-blue-600 hover:text-blue-800">Entre em contato</Link> para mais informações ou <a href="https://geral.sisgesc.net/gettingStarted" target='_blank' className="text-blue-600 hover:text-blue-800 font-semibold">Solicite uma Demonstração</a> para ver o módulo em ação.
+                    <LinkHelp local={props.local}/>
                 </div>
             </div>
             <FooterComponent/>
