@@ -24,14 +24,20 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
 };
 
 export interface postTs{
-    post_translate: postTranslate[]
+    post_translate: postTranslate[],
+    images: {
+        url: string,
+        alt:string,
+        post_id: number
+    }[]
 }
 
 interface postTranslate{
     department: string,
     title: string,
     description: string,
+    content: string,
     path: string,
     image: string,
-    post_id: number
+    post_id: number,
 }

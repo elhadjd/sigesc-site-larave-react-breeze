@@ -50,7 +50,7 @@ export default function FooterComponent() {
                 <li><Link href={route('resources',{resource: 'terms'})}><a className='flex items-center gap-2'>{t('words.termService')}</a></Link></li>
                 <li><Link href={route('resources',{resource: 'faq'})}><a className='flex items-center gap-2'>FAQ</a></Link></li>
                 <li><Link href={route('resources',{resource: 'help'})}><a className='flex items-center gap-2'>{t('words.help')}</a></Link></li>
-                <li><Link href={route('resources',{resource: 'learningCenter'})}>{t('words.learn')}</Link></li>
+                <li><Link href={route('learningCenter')}>{t('words.learn')}</Link></li>
             </ul>
           </div>
         </div>

@@ -89,6 +89,7 @@ require __DIR__.'/auth.php';
 
         Route::controller(ResourcesController::class)->group(function(){
             Route::get('resources/{resource}','index')->name('resources');
+            Route::get('resources/learningCenter/posts','learningCenter')->name('learningCenter');
         });
 
         Route::controller(ChatController::class)->group(function(){
@@ -102,7 +103,7 @@ require __DIR__.'/auth.php';
         });
 
         Route::controller(BlogController::class)->group(function(){
-            Route::get('blog/{blog?}','index')->name('blog');
+            Route::get('blog/posts/{post?}','index')->name('blog');
         });
 
         Route::controller(shopController::class)->group(function(){

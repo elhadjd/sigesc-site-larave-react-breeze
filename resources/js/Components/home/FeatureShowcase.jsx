@@ -22,7 +22,7 @@ export default function FeatureShowcase () {
             <CardSection title={t('cards.FeatureShowcase.2.title')} content={t('cards.FeatureShowcase.2.desc')} />
             <CardSection title={t('cards.FeatureShowcase.3.title')} content={t('cards.FeatureShowcase.3.desc')}/>
           </div>
-          <a href="https://geral.sisgesc.net/gettingStarted" className="text-indigo-600 hover:text-indigo-500 mt-4 block" style={{color: '#9333ea'}}>{t('words.register')}</a>
+          <a href="https://geral.sisgesc.net/gettingStarted" target='_blank' className="text-indigo-600 hover:text-indigo-500 mt-4 block" style={{color: '#9333ea'}}>{t('words.register')}</a>
         </div>
       </motion.div>
     </div>

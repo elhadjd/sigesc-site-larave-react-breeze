@@ -22,12 +22,14 @@ class BlogController extends Controller
             ]);
         }
 
-        $posts =  $postModel->with(['postTranslate',function($postTranslate){
+
+        $posts =  $postModel->with(['postTranslate'=>function($postTranslate){
             $postTranslate->where('local',app()->getLocale())->get();
-        }])->whereId($post)->first();
-        return Inertia::render("blog/$post",[
+        }])->where('id',$post)->first();
+
+        return Inertia::render("blog/post",[
             'local'=>$local,
-            'posts'=>$posts
+            'post'=>$posts
         ]);
     }
 }
